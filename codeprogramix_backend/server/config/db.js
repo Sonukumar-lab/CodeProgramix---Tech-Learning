@@ -1,19 +1,23 @@
 const mysql = require('mysql2');
 require('dotenv').config();
+const { URL } = require('url');
 
-// Create a MySQL connection
+// DATABASE_URL parse karo
+const dbUrl = new URL(process.env.DATABASE_URL);
+
+// Create MySQL connection
 const connection = mysql.createConnection({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT || 3306
+    host: dbUrl.hostname,             // host from URL
+    user: dbUrl.username,             // username from URL
+    password: dbUrl.password,         // password from URL
+    database: dbUrl.pathname.slice(1),// remove leading "/" from path
+    port: dbUrl.port                  // port from URL
 });
 
 // Connect to MySQL
 connection.connect((err) => {
     if (err) {
-        console.error('Error connecting to MySQL:', err.message);
+        console.error('Error connecting to MySQL:', err); // full error
         return;
     }
     console.log('Connected to MySQL database!');
