@@ -1,17 +1,13 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-// Agar tumne full URL liya hai to use karo
-// let dbUrl = process.env.DB_URL;
-// const connection = mysql.createConnection(dbUrl);
-
-// Recommended: individual fields se connection
+// Create a MySQL connection using individual fields
 const connection = mysql.createConnection({
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
     database: process.env.DB_NAME || 'test',
-    port: process.env.DB_PORT || 3306,
+    port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3306, // convert string to number
 });
 
 // Connect to MySQL

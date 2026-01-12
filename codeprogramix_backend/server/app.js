@@ -9,7 +9,7 @@ const connection = require('./config/db'); // db.js
 
 // Middleware
 app.use(cors({
-    origin: '*', // ya frontend URL: 'https://your-frontend-url.com'
+    origin: '*', // ya specific frontend URL, jaise 'https://your-frontend-url.com'
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
