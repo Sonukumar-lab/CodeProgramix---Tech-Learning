@@ -1,23 +1,23 @@
 const mysql = require('mysql2');
 require('dotenv').config();
-const { URL } = require('url');
 
-// DATABASE_URL parse karo
-const dbUrl = new URL(process.env.DATABASE_URL);
+// Agar tumne full URL liya hai to use karo
+// let dbUrl = process.env.DB_URL;
+// const connection = mysql.createConnection(dbUrl);
 
-// Create MySQL connection
+// Recommended: individual fields se connection
 const connection = mysql.createConnection({
-    host: dbUrl.hostname,             // host from URL
-    user: dbUrl.username,             // username from URL
-    password: dbUrl.password,         // password from URL
-    database: dbUrl.pathname.slice(1),// remove leading "/" from path
-    port: dbUrl.port                  // port from URL
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || 'test',
+    port: process.env.DB_PORT || 3306,
 });
 
 // Connect to MySQL
 connection.connect((err) => {
     if (err) {
-        console.error('Error connecting to MySQL:', err); // full error
+        console.error('Error connecting to MySQL:', err.message);
         return;
     }
     console.log('Connected to MySQL database!');
