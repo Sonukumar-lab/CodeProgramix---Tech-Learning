@@ -1,14 +1,8 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-// Create a MySQL connection using individual fields
-const connection = mysql.createConnection({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'test',
-    port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3306, // convert string to number
-});
+// Connect using full URL (private network recommended on Railway)
+const connection = mysql.createConnection(process.env.DB_URL || 'mysql://root:password@localhost:3306/railway');
 
 // Connect to MySQL
 connection.connect((err) => {

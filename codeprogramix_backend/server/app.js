@@ -1,15 +1,15 @@
 require('dotenv').config();
 const express = require('express');
-const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const app = express();
 
 // MySQL connection
 const connection = require('./config/db'); // db.js
 
 // Middleware
 app.use(cors({
-    origin: '*', // ya specific frontend URL, jaise 'https://your-frontend-url.com'
+    origin: '*', // Ya frontend URL jaise: 'https://your-frontend-url.com'
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
