@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page - CodeProgramix</title>
+    <link rel="stylesheet" href="payment-style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color:#2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 30px;
+        }
+
+        .payment-method {
+            text-align: center;
+        }
+
+        .payment-method img {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 10px;
+        }
+
+        .payment-method p {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 30px;
+        }
+
+        .confirmation {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .confirmation button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .confirmation button:hover {
+            background-color: #2ecc71;
+        }
+
+        .screenshot-upload {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .screenshot-upload input[type="file"] {
+            padding: 10px;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .screenshot-upload button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .screenshot-upload button:hover {
+            background-color: #e67e22;
+        }
+
+        #accessMessage {
+            display: none;
+            margin-top: 20px;
+            color: green;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Make a Payment</h1>
+    </header>
+
+    <main>
+        <h2>Please scan one of the QR codes to complete your payment of 19/- rupees</h2>
+
+        <div class="payment-methods">
+            <!-- Paytm QR Code -->
+            <div class="payment-method">
+                <img src="payment/paytm.jpg" alt="Paytm QR Code">
+                <p>Paytm Payment</p>
+            </div>
+
+            <!-- PhonePe QR Code -->
+            <div class="payment-method">
+                <img src="payment/phonepay.jpg" alt="PhonePe QR Code">
+                <p>PhonePe Payment</p>
+            </div>
+        </div>
+
+        <p>If you have scanned the QR code and completed the payment, please upload a screenshot of the payment below and click the button to confirm your payment.</p>
+
+        <!-- Screenshot Upload Section -->
+        <div class="screenshot-upload">
+            <input type="file" id="paymentScreenshot" accept="image/*">
+            <button onclick="uploadScreenshot()">Upload Screenshot</button>
+        </div>
+
+        <!-- Payment Confirmation Button -->
+        <div class="confirmation" style="display: none;">
+            <button onclick="accessContent()">I Have Paid, Give Me Access</button>
+        </div>
+
+        <div id="accessMessage" style="display: none;">
+            <p>Thank you for your payment! You now have access to the content.</p>
+            <a href="pdf/project.pdf" class="btn btn-success">Access Content</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CodeProgramix. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function uploadScreenshot() {
+            const screenshotInput = document.getElementById('paymentScreenshot');
+            const confirmationButton = document.querySelector('.confirmation');
+
+            // Check if the user has uploaded a file
+            if (screenshotInput.files.length > 0) {
+                const uploadedFile = screenshotInput.files[0];
+
+                // For this example, we will assume that any image uploaded is a valid screenshot
+                // You can implement further checks if needed (e.g., check file name or extension)
+                alert('Screenshot uploaded successfully! Click the button below to confirm your payment.');
+
+                // Hide the upload section and show the confirmation button
+                screenshotInput.disabled = true; // Disable file input after uploading
+                confirmationButton.style.display = 'block'; // Show confirmation button
+            } else {
+                alert('Please upload a screenshot of your payment.');
+            }
+        }
+
+        // Function to display a message once payment is confirmed
+        function accessContent() {
+            document.getElementById('accessMessage').style.display = 'block'; // Show success message
+            document.querySelector('.confirmation button').style.display = 'none'; // Hide confirmation button
+        }
+    </script>
+
+</body>
+</html>

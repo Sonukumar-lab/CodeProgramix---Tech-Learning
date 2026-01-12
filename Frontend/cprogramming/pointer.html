@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pointers in C - CodeProgramix</title>
+    <link rel="stylesheet" href="all-cse.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CodeProgramix</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../course.html">Course</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-details">
+            <h1>Pointers in C</h1>
+            <p>
+                A pointer in C is a variable that stores the memory address of another variable. It allows us to directly access and modify the values stored in memory, which makes pointers powerful tools for efficient memory management and manipulation.
+                Understanding pointers is crucial for low-level programming, as they provide direct access to memory and allow you to work with dynamic memory, arrays, structures, and function arguments efficiently.
+            </p>
+
+            <h2>1. Introduction to Pointers</h2>
+            <p>A pointer is a variable that holds the memory address of another variable. It allows indirect manipulation of variables, enabling functions to modify variables defined in other parts of the program.</p>
+
+            <h3>Pointer Declaration</h3>
+            <p>To declare a pointer in C, we use the <code>*</code> symbol before the pointer variable's name. The type of the pointer must match the type of the variable it points to.</p>
+            <pre><code>type *pointer_name;</code></pre>
+            <ul>
+                <li><strong>type:</strong> The type of variable the pointer points to (e.g., int, char, float).</li>
+                <li><strong>pointer_name:</strong> The name of the pointer.</li>
+            </ul>
+
+            <h3>Example of Pointer Declaration</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+int main() {
+    int a = 10;
+    int *ptr;  // pointer to int
+    ptr = &a;  // ptr holds the address of a
+    printf("Value of a: %d\n", a);
+    printf("Address of a: %p\n", (void *)&a);
+    printf("Value at ptr: %d\n", *ptr);  // dereferencing the pointer
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <p><strong>Explanation:</strong></p>
+            <ul>
+                <li><code>int *ptr;</code> declares a pointer <code>ptr</code> that will point to an int.</li>
+                <li><code>ptr = &a;</code> assigns the address of <code>a</code> to <code>ptr</code>.</li>
+                <li><code>*ptr</code> is used to dereference the pointer and access the value at the address stored in <code>ptr</code>.</li>
+            </ul>
+            <h3>Dry Run:</h3>
+            <ul>
+                <li><code>a = 10;</code></li>
+                <li><code>ptr</code> stores the address of <code>a</code>.</li>
+                <li>The value of <code>a</code> is accessed using <code>*ptr</code>.</li>
+            </ul>
+            <h3>Output:</h3>
+            <pre>
+Value of a: 10
+Address of a: 0x7fffa49b16ac  (the address will vary)
+Value at ptr: 10
+            </pre>
+
+            <h2>2. Pointer Arithmetic</h2>
+            <p>Pointer arithmetic refers to performing operations like addition or subtraction on pointers. When you add an integer to a pointer, the pointer moves forward by that many memory units, depending on the type it points to.</p>
+
+            <h3>Example: Pointer Arithmetic</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int *ptr = arr;
+    printf("Value at ptr: %d\n", *ptr);  // Points to arr[0]
+    
+    ptr++;  // Move the pointer to the next element
+    printf("Value at ptr: %d\n", *ptr);  // Points to arr[1]
+    
+    ptr += 2;  // Move the pointer forward by 2 elements
+    printf("Value at ptr: %d\n", *ptr);  // Points to arr[3]
+    
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Dry Run:</h3>
+            <ul>
+                <li><code>ptr</code> initially points to <code>arr[0]</code>.</li>
+                <li><code>ptr++</code> moves the pointer to <code>arr[1]</code>.</li>
+                <li><code>ptr += 2</code> moves the pointer to <code>arr[3]</code>.</li>
+            </ul>
+            <h3>Output:</h3>
+            <pre>
+Value at ptr: 10
+Value at ptr: 20
+Value at ptr: 40
+            </pre>
+
+            <h2>3. Pointers and Arrays</h2>
+            <p>In C, arrays and pointers are closely related. An array name is essentially a pointer to the first element of the array. You can use pointers to traverse arrays.</p>
+
+            <h3>Example: Pointers and Arrays</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int *ptr = arr;  // Array name is a pointer to the first element
+    
+    for (int i = 0; i < 5; i++) {
+        printf("Value at arr[%d]: %d\n", i, *(ptr + i));  // Pointer arithmetic
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Dry Run:</h3>
+            <ul>
+                <li><code>ptr</code> points to <code>arr[0]</code>.</li>
+                <li>In each iteration, <code>*(ptr + i)</code> accesses the value of <code>arr[i]</code> using pointer arithmetic.</li>
+            </ul>
+            <h3>Output:</h3>
+            <pre>
+Value at arr[0]: 10
+Value at arr[1]: 20
+Value at arr[2]: 30
+Value at arr[3]: 40
+Value at arr[4]: 50
+            </pre>
+
+            <h2>4. Pointers to Functions</h2>
+            <p>Pointers can also point to functions. This allows you to call a function indirectly through a pointer.</p>
+
+            <h3>Example: Pointers to Functions</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+void greet() {
+    printf("Hello, World!\n");
+}
+int add(int a, int b) {
+    return a + b;
+}
+int main() {
+    void (*func_ptr)() = greet;  // Pointer to function
+    func_ptr();  // Calling greet() through pointer
+    
+    int (*add_ptr)(int, int) = add;  // Pointer to add function
+    printf("Sum: %d\n", add_ptr(5, 3));  // Calling add() through pointer
+    
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Dry Run:</h3>
+            <ul>
+                <li><code>func_ptr</code> is a pointer to the <code>greet</code> function. It is called indirectly using <code>func_ptr()</code>.</li>
+                <li><code>add_ptr</code> is a pointer to the <code>add</code> function. It is called with arguments 5 and 3 using <code>add_ptr(5, 3)</code>.</li>
+            </ul>
+            <h3>Output:</h3>
+            <pre>
+Hello, World!
+Sum: 8
+            </pre>
+
+            <h2>5. Pointers to Structures</h2>
+            <p>You can use pointers to manipulate structures in C. Using pointers to structures allows efficient access and modification of structure members.</p>
+
+            <h3>Example: Pointers to Structures</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+struct Point {
+    int x;
+    int y;
+};
+int main() {
+    struct Point p1 = {10, 20};
+    struct Point *ptr = &p1;  // Pointer to structure
+    
+    printf("Point p1: (%d, %d)\n", ptr->x, ptr->y);  // Access members using pointer
+    
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Dry Run:</h3>
+            <ul>
+                <li><code>ptr</code> stores the address of <code>p1</code>.</li>
+                <li><code>ptr->x</code> accesses <code>p1.x</code>, and <code>ptr->y</code> accesses <code>p1.y</code> using the pointer.</li>
+            </ul>
+            <h3>Output:</h3>
+            <pre>
+Point p1: (10, 20)
+            </pre>
+
+            <h2>6. Dynamic Memory Allocation</h2>
+            <p>Pointers are used for dynamic memory allocation in C, using functions like <code>malloc()</code>, <code>calloc()</code>, and <code>free()</code>.</p>
+
+            <h3>Example: Dynamic Memory Allocation</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main() {
+    int *ptr;
+    
+    // Dynamically allocating memory for an array of 5 integers
+    ptr = (int *)malloc(5 * sizeof(int));
+    
+    if (ptr == NULL) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
+    
+    // Assigning values to the allocated memory
+    for (int i = 0; i < 5; i++) {
+        ptr[i] = i * 10;
+    }
+    
+    // Printing the allocated values
+    for (int i = 0; i < 5; i++) {
+        printf("Value at ptr[%d]: %d\n", i, ptr[i]);
+    }
+    
+    // Freeing the allocated memory
+    free(ptr);
+    
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Dry Run:</h3>
+            <ul>
+                <li>Memory for 5 integers is dynamically allocated.</li>
+                <li>Values are assigned to the allocated memory, and then printed.</li>
+                <li>Memory is freed after usage.</li>
+            </ul>
+            <h3>Output:</h3>
+            <pre>
+Value at ptr[0]: 0
+Value at ptr[1]: 10
+Value at ptr[2]: 20
+Value at ptr[3]: 30
+Value at ptr[4]: 40
+            </pre>
+            <h2>Programming Questions</h2>
+            <h3>1.Write a program to swap two numbers using pointers.</h3>
+                        <pre>
+#include &lt;stdio.h&gt;
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int x, y;
+    printf("Enter two numbers: ");
+    scanf("%d %d", &x, &y);
+    printf("Before swapping: x = %d, y = %d\n", x, y);
+    swap(&x, &y);
+    printf("After swapping: x = %d, y = %d\n", x, y);
+    return 0;
+}
+         </pre>
+         <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+         <h3>2.Write a program to find the largest element in an array using pointers.</h3>
+         <pre>
+#include &lt;stdio.h&gt;
+int findLargest(int *arr, int size) {
+    int largest = *arr;
+    for (int i = 1; i < size; i++) {
+        if (*(arr + i) > largest) {
+            largest = *(arr + i);
+        }
+    }
+    return largest;
+}
+
+int main() {
+    int n;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int largest = findLargest(arr, n);
+    printf("The largest element is: %d\n", largest);
+    
+    return 0;
+}
+         </pre>
+         <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+         <h3>3.Write a program to reverse an array using pointer arithmetic.</h3>
+         <pre>
+#include &lt;stdio.h&gt;
+void reverseArray(int *arr, int size) {
+    int *start = arr;
+    int *end = arr + size - 1;
+    int temp;
+    
+    while (start < end) {
+        temp = *start;
+        *start = *end;
+        *end = temp;
+        start++;
+        end--;
+    }
+}
+
+int main() {
+    int n;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    reverseArray(arr, n);
+
+    printf("Reversed array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+
+         </pre>
+         <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+         <h3>4.Write a program that uses pointers to allocate and deallocate memory dynamically and handles memory errors.</h3>
+         <pre>
+#include &lt;stdio.h&gt
+#include &lt;stdlib.h&gt
+int main() {
+    int n;
+    int *arr;
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    arr = (int *)malloc(n * sizeof(int));
+
+    if (arr == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Entered elements are:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    free(arr);
+    printf("Memory successfully deallocated.\n");
+
+    return 0;
+}
+
+         </pre>
+         <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <a href="function.html" class="back-button">Previous page</a>
+            <a href="array.html" class="back-button">Next page</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: codeprogramix@gmail.com</p>
+                <p>Phone: +91 9973186195</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="icons8-facebook.svg" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Instagram"><img src="icons8-instagram.svg" alt="Instagram Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="icons8-linkedin.svg" alt="Twitter Icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 CodeProgramix. All rights reserved.</p>
+    </footer>
+</body>
+</html>

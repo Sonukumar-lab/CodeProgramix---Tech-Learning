@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Syntax and Structure in C - CodeProgramix</title>
+    <link rel="stylesheet" href="all-cse.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CodeProgramix</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../course.html">Course</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-details">
+            <h1>Basic Syntax and Structure in C</h1>
+            <p>
+                The basic syntax and structure of a C program are crucial to understanding how programs are written in C. A C program follows a specific structure and syntax that allows the code to be executed correctly. Understanding these rules and conventions will help you in writing efficient and error-free C programs.
+            </p>
+            <h2>C Program Structure</h2>
+            <p>
+                A C program is made up of several components that work together to perform a specific task. Here’s the general structure of a C program:
+            </p>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>  // Preprocessor Directive for including standard input-output library
+
+int main() {  // Main function - program execution starts here
+    return 0;  // Return statement indicating successful program completion
+}
+            </pre>
+            <h3>Explanation of Each Component:</h3>
+            <ol>
+                <li><strong><p>#include &lt;stdio.h&gt;:</p></strong> This line is a preprocessor directive that includes the Standard Input Output library, stdio.h. This library provides functions for input and output operations such as printf() (for printing output to the console) and scanf() (for taking input from the user). In this code, stdio.h is included, but there is no actual input or output operation performed, so it's not necessary for this particular program. However, it's typically included for any future operations like printing or scanning data.</li>
+                <li><strong>int main():</strong> int specifies that the main() function will return an integer value, which is typically used to indicate the program's exit status. The main() function is the entry point of a C program. This is where the execution begins.</li>
+                <li><strong>return 0;:</strong> This line signifies the end of the main() function. The return 0; statement sends a return value of 0 back to the operating system. By convention, returning 0 from main() means the program executed successfully. If there were an error, a non-zero value could be returned instead.</li>
+                <li><strong>Closing Braces (}):</strong> These braces mark the beginning and end of the main() function.</li>
+            </ol>
+
+            <h2>Components of a C Program</h2>
+            <h3>2.1 Preprocessor Directives</h3>
+            <p>Preprocessor directives are instructions given to the compiler before the program is compiled. These are used to include libraries, define constants, and manage conditional compilation.</p>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>  // This directive includes the Standard Input Output library
+#define PI 3.14      // This defines a constant for PI
+            </pre>
+            <ul>
+                <li><strong>#include:</strong> This directive is used to include header files like stdio.h, stdlib.h, etc., which contain function prototypes and other essential definitions.</li>
+                <li><strong>#define:</strong> This is used to define constant values that remain the same throughout the program.</li>
+            </ul>
+
+            <h3>2.2 Global Declarations (Optional)</h3>
+            <p>Global variables and functions are declared outside of the main function and can be accessed by all functions within the program.</p>
+            <pre>
+int globalVar = 10;  // A global variable
+            </pre>
+
+            <h3>2.3 Main Function</h3>
+            <p>The main() function is the starting point of every C program. The execution of the program begins from the main function, and it is mandatory in every C program.</p>
+            <pre>
+int main() {
+    // Code to execute
+    return 0;  // Return statement (optional)
+}
+            </pre>
+
+            <h3>2.4 Statements and Expressions</h3>
+            <p>In C, statements are instructions that tell the program what to do, and expressions are combinations of variables, operators, and values that evaluate to a single result.</p>
+            <ul>
+                <li><strong>Statement Example:</strong> <code>int a = 5;</code>  // Variable declaration and assignment</li>
+                <li><strong>Expression Example:</strong> <code>int sum = a + 5;</code>  // Expression that adds a variable and a constant</li>
+            </ul>
+
+            <h2>Syntax Rules</h2>
+            <h3>3.1 Identifiers</h3>
+            <p>Identifiers are names used for variables, functions, arrays, etc. An identifier must start with a letter or an underscore (_) and can contain letters, digits, and underscores.</p>
+            <ul>
+                <li><strong>Valid identifiers:</strong> <code>int x, sum, myVariable;</code></li>
+                <li><strong>Invalid identifiers:</strong> <code>int 2x;</code>  // Starts with a digit, <code>int my-variable;</code>  // Contains a hyphen (-)</li>
+            </ul>
+
+            <h3>3.2 Comments</h3>
+            <p>Comments are used to explain the code and make it more readable. C supports two types of comments:</p>
+            <ul>
+                <li><strong>Single-line comment:</strong> Begins with <code>//</code></li>
+                <pre>// This is a single-line comment</pre>
+                <li><strong>Multi-line comment:</strong> Begins with <code>/*</code> and ends with <code>*/</code></li>
+                <pre>/* This is a
+   multi-line comment */</pre>
+            </ul>
+
+            <h3>3.3 Semicolons</h3>
+            <p>Each statement in C must end with a semicolon (<code>;</code>). It is a critical syntax rule in C.</p>
+            <pre>int a = 5;  // Correct
+int b = 10   // Incorrect: missing semicolon</pre>
+
+            <h3>3.4 Braces {}</h3>
+            <p>Curly braces <code>{}</code> are used to group multiple statements together into a block of code. They are most commonly used to define the body of functions, loops, and conditional statements.</p>
+            <pre>if (x > 0) {
+    printf("Positive number\n");
+}</pre>
+
+            <h3>3.5 Indentation</h3>
+            <p>C does not require indentation, but it is a good practice to indent code to enhance readability and maintainability. Typically, 4 spaces or a tab is used for indentation.</p>
+            <pre>int main() {
+    int a = 5;
+    if (a > 0) {
+        printf("Positive number\n");
+    }
+    return 0;
+}</pre>
+
+            <h2>Control Structures</h2>
+            <h3>4.1 Conditional Statements</h3>
+            <ul>
+                <li><strong>if statement:</strong> It executes a block of code if a specified condition is true.</li>
+                <pre>if (x > 0) {
+    printf("Positive number\n");
+}</pre>
+                <li><strong>if-else statement:</strong> It executes one block of code if the condition is true, and another block if the condition is false.</li>
+                <pre>if (x > 0) {
+    printf("Positive number\n");
+} else {
+    printf("Non-positive number\n");
+}</pre>
+                <li><strong>switch statement:</strong> It allows multi-way branching based on the value of a variable.</li>
+                <pre>switch (day) {
+    case 1: 
+        printf("Monday");
+        break;
+    case 2: 
+        printf("Tuesday");
+        break;
+    default: 
+        printf("Invalid day");
+}</pre>
+            </ul>
+
+            <h3>4.2 Looping Statements</h3>
+            <ul>
+                <li><strong>for loop:</strong> It is used when the number of iterations is known.</li>
+                <pre>for (int i = 0; i < 5; i++) {
+    printf("%d\n", i);
+}</pre>
+                <li><strong>while loop:</strong> It is used when the number of iterations is unknown and continues as long as the condition is true.</li>
+                <pre>while (x > 0) {
+    printf("%d\n", x);
+    x--;
+}</pre>
+                <li><strong>do-while loop:</strong> Similar to while, but it ensures that the block of code is executed at least once before checking the condition.</li>
+                <pre>do {
+    printf("This will execute at least once\n");
+} while (x > 0);</pre>
+            </ul>
+
+            <h2>Example Program: Basic Syntax and Structure</h2>
+            <pre>
+    <code>#include &lt;stdio.h&gt;</code>
+    int globalVar = 20;
+    
+    int add(int a, int b) {  // Function declaration
+        return a + b;        // Return the sum
+    }
+    
+    int main() {
+        int x = 10;  // Local variable declaration
+        int y = 5;   // Local variable declaration
+    
+        // Using a function
+        int sum = add(x, y);  // Call the add function
+    
+        // Output the result
+        printf("Sum of %d and %d is %d\n", x, y, sum);
+    
+        // Control flow example
+        if (sum > 10) {
+            printf("The sum is greater than 10.\n");
+        }
+    
+        // Loop example
+        for (int i = 1; i <= 3; i++) {
+            printf("Iteration %d\n", i);
+        }
+    
+        return 0;  // Return from main function
+    }
+    
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Output:</h3>
+            <pre>
+Sum of 10 and 5 is 15
+The sum is greater than 10.
+Iteration 1
+Iteration 2
+Iteration 3
+            </pre>
+            <a href="itro.html" class="back-button">Previous page</a>
+            <a href="variable.html" class="back-button">Next page</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: codeprogramix@gmail.com</p>
+                <p>Phone: +91 9973186195</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="icons8-facebook.svg" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="icons8-instagram.svg" alt="Twitter Icon"></a>
+                    <a href="#" aria-label="LinkedIn"><img src="icons8-linkedin.svg" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 CodeProgramix. All rights reserved.</p>
+    </footer>
+</body>
+</html>

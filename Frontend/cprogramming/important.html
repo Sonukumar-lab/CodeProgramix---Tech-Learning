@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important question in C - CodeProgramix</title>
+    <link rel="stylesheet" href="all-cse.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CodeProgramix</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../course.html">Course</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-details">
+            <h1>Important Questions</h1>
+            <p>
+                This question are important for the university examination and practice for basic understanding...
+            </p>
+            
+            <h3>1. Sum of Elements in an Array</h3>
+            <p><strong>Problem:</strong> Given an array, write a program to find the sum of its elements.</p>
+            <pre>
+#include &lt;stdio.h&gt;
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int sum = 0;
+    for (int i = 0; i < 5; i++) {
+        sum += arr[i];
+    }
+    printf("Sum: %d\n", sum);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <p><strong>Output:</strong> Sum: 15</p>
+
+            <h3>2. Reverse an Array</h3>
+            <p><strong>Problem:</strong> Write a program to reverse an array.</p>
+            <pre>
+#include &lt;stdio.h&gt;
+void reverseArray(int arr[], int size) {
+    int temp, start = 0, end = size - 1;
+    while (start < end) {
+        temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
+    }
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    reverseArray(arr, size);
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <p><strong>Output:</strong> 5 4 3 2 1</p>
+
+            <h3>3. Find Largest Element in Array</h3>
+            <p><strong>Problem:</strong> Write a program to find the largest element in an array.</p>
+            <pre>
+#include &lt;stdio.h&gt;
+int main() {
+    int arr[] = {1, 3, 5, 7, 2};
+    int largest = arr[0];
+    for (int i = 1; i < 5; i++) {
+        if (arr[i] > largest) {
+            largest = arr[i];
+        }
+    }
+    printf("Largest Element: %d\n", largest);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <p><strong>Output:</strong> Largest Element: 7</p>
+
+            <h3>4. Palindrome Check (String)</h3>
+            <p><strong>Problem:</strong> Check if a string is a palindrome.</p>
+            <pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int isPalindrome(char str[]) {
+    int start = 0, end = strlen(str) - 1;
+    while (start < end) {
+        if (str[start] != str[end]) {
+            return 0;
+        }
+        start++;
+        end--;
+    }
+    return 1;
+}
+
+int main() {
+    char str[] = "madam";
+    if (isPalindrome(str)) {
+        printf("Palindrome\n");
+    } else {
+        printf("Not Palindrome\n");
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <p><strong>Output:</strong> Palindrome</p>
+
+            <h3>5. Count Vowels in a String</h3>
+            <p><strong>Problem:</strong> Write a program to count the number of vowels in a string.</p>
+            <pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int countVowels(char str[]) {
+    int count = 0;
+    for (int i = 0; i < strlen(str); i++) {
+        if (str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u') {
+            count++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    char str[] = "hello world";
+    printf("Vowels Count: %d\n", countVowels(str));
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <p><strong>Output:</strong> Vowels Count: 3</p>
+
+            <h3>6. Count the Number of Digits in a Number</h3>
+            <p><strong>Problem:</strong> Count the number of digits in a given number.</p>
+            <pre>
+#include &lt;stdio.h&gt;
+int countDigits(int num) {
+    int count = 0;
+    while (num != 0) {
+        num /= 10;
+        count++;
+    }
+    return count;
+}
+
+int main() {
+    int num = 12345;
+    printf("Number of digits: %d\n", countDigits(num));
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <p><strong>Output:</strong> Number of digits: 5</p>
+
+            <h3>7. Fibonacci Series (Recursive)</h3>
+            <p><strong>Problem:</strong> Print the Fibonacci series using recursion.</p>
+            <pre>
+#include &lt;stdio.h&gt;
+int fibonacci(int n) {
+    if (n <= 1) return n;
+    return fibonacci(n-1) + fibonacci(n-2);
+}
+
+int main() {
+    int n = 10;
+    for (int i = 0; i < n; i++) {
+        printf("%d ", fibonacci(i));
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <p><strong>Output:</strong> 0 1 1 2 3 5 8 13 21 34</p>
+
+            <h3>8. Factorial of a Number</h3>
+            <p><strong>Problem:</strong> Write a program to find the factorial of a number.</p>
+            <pre>
+#include &lt;stdio.h&gt;
+int factorial(int n) {
+    if (n == 0 || n == 1) return 1;
+    return n * factorial(n - 1);
+}
+
+int main() {
+    int n = 5;
+    printf("Factorial: %d\n", factorial(n));
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <p><strong>Output:</strong> Factorial: 120</p>
+
+            <h3>9. GCD (Greatest Common Divisor) of Two Numbers</h3>
+            <p><strong>Problem:</strong> Write a program to find the GCD of two numbers using recursion.</p>
+            <pre>
+#include &lt;stdio.h&gt;
+int gcd(int a, int b) {
+    if (b == 0) return a;
+    return gcd(b, a % b);
+}
+
+int main() {
+    int a = 56, b = 98;
+    printf("GCD: %d\n", gcd(a, b));
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <p><strong>Output:</strong> GCD: 14</p>
+
+            <h3>10. Sum of Digits of a Number</h3>
+            <p><strong>Problem:</strong> Write a program to find the sum of digits of a number.</p>
+            <pre>
+#include &lt;stdio.h&gt;
+int sumOfDigits(int num) {
+    int sum = 0;
+    while (num != 0) {
+        sum += num % 10;
+        num /= 10;
+    }
+    return sum;
+}
+
+int main() {
+    int num = 12345;
+    printf("Sum of digits: %d\n", sumOfDigits(num));
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <p><strong>Output:</strong> Sum of digits: 15</p>
+            <h3>11. Prime Number Check</h3>
+            <p><strong>Problem:</strong> Write a program to check if a number is prime.</p>
+            <pre>
+#include &lt;stdio.h&gt;
+int isPrime(int num) {
+    for (int i = 2; i <= num / 2; i++) {
+        if (num % i == 0) return 0;
+    }
+    return 1;
+}
+
+int main() {
+    int num = 11;
+    if (isPrime(num)) {
+        printf("%d is prime\n", num);
+    } else {
+        printf("%d is not prime\n", num);
+    }
+    return 0;
+}
+
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <p><strong>Output:</strong> 11 is prime</p>
+
+            <p><a href="pdf/Important.pdf" target="_blank">All Questions in this, view all.</a></p>
+
+            <a href="enum.html" class="back-button">Previous page</a>
+            <a href="project.html" class="back-button">Next page</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: codeprogramix@gmail.com</p>
+                <p>Phone: +91 9973186195</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="icons8-facebook.svg" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="icons8-instagram.svg" alt="Twitter Icon"></a>
+                    <a href="#" aria-label="LinkedIn"><img src="icons8-linkedin.svg" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 CodeProgramix. All rights reserved.</p>
+    </footer>
+</body>
+</html>

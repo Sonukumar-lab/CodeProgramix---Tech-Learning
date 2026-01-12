@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Operations in C - CodeProgramix</title>
+    <link rel="stylesheet" href="all-cse.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CodeProgramix</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../course.html">Course</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-details">
+            <h1>File Operations in C</h1>
+            <p>
+                File operations in C are essential for working with files (reading, writing, appending) within programs. These operations are facilitated through standard library functions, and files are opened using specific modes that define the kind of operations that can be performed.
+            </p>
+            
+            <h2>1. File Handling Functions in C</h2>
+            <p>Here are the core functions used for file handling in C:</p>
+            <ul>
+                <li><strong>fopen():</strong> Opens a file with a specific mode.</li>
+                <li><strong>fclose():</strong> Closes an opened file.</li>
+                <li><strong>fread():</strong> Reads data from a file.</li>
+                <li><strong>fwrite():</strong> Writes data to a file.</li>
+                <li><strong>fseek():</strong> Moves the file pointer to a specific position.</li>
+                <li><strong>ftell():</strong> Returns the current position of the file pointer.</li>
+                <li><strong>fprintf():</strong> Writes formatted data to a file (similar to printf).</li>
+                <li><strong>fscanf():</strong> Reads formatted input from a file (similar to scanf).</li>
+                <li><strong>feof():</strong> Checks if the end-of-file (EOF) has been reached.</li>
+                <li><strong>ferror():</strong> Checks if an error occurred during a file operation.</li>
+            </ul>
+
+            <h2>2. File Opening Modes in C</h2>
+            <p>File opening modes specify the actions allowed on the file when it is opened. Below are the common file modes used in C:</p>
+            <ol>
+                <li><strong>"r" (Read Mode):</strong> Opens a file for reading only. The file must exist.</li>
+                <pre>
+FILE *fp = fopen("file.txt", "r");
+if (fp == NULL) {
+    printf("File not found\n");
+}
+                </pre>
+                <li><strong>"w" (Write Mode):</strong> Opens a file for writing. If the file exists, it truncates the file (empties it). If it does not exist, a new file is created.</li>
+                <pre>
+FILE *fp = fopen("file.txt", "w");
+if (fp != NULL) {
+    fprintf(fp, "Hello, World!");
+    fclose(fp);
+}
+
+                </pre>
+                <li><strong>"a" (Append Mode):</strong> Opens a file for appending. Data will be written at the end of the file, without truncating it.</li>
+                <pre>
+FILE *fp = fopen("file.txt", "a");
+if (fp != NULL) {
+    fprintf(fp, "New line of text\n");
+    fclose(fp);
+}
+
+                </pre>
+                <li><strong>"r+" (Read and Write Mode):</strong> Opens a file for both reading and writing. The file must exist.</li>
+                <pre>
+FILE *fp = fopen("file.txt", "r+");
+if (fp != NULL) {
+    char ch = fgetc(fp);  // Reading a character
+    fseek(fp, 0, SEEK_END);  // Move pointer to the end
+    fprintf(fp, "New data\n");
+    fclose(fp);
+}
+
+                </pre>
+                <li><strong>"w+" (Write and Read Mode):</strong> Opens a file for both reading and writing. If the file exists, it is truncated. If it does not exist, a new file is created.</li>
+                <pre>
+FILE *fp = fopen("file.txt", "w+");
+if (fp != NULL) {
+    fprintf(fp, "Hello again!");
+    fseek(fp, 0, SEEK_SET);
+    char ch = fgetc(fp);  // Read the first character
+    printf("First character: %c\n", ch);
+    fclose(fp);
+}
+
+                </pre>
+                <li><strong>"a+" (Append and Read Mode):</strong> Opens a file for both reading and appending. The file pointer is placed at the end of the file for appending, but you can also read the file from the beginning or anywhere.</li>
+                <pre>
+FILE *fp = fopen("file.txt", "a+");
+if (fp != NULL) {
+    fprintf(fp, "Appending data\n");
+    fseek(fp, 0, SEEK_SET);  // Go to the start to read
+    char ch = fgetc(fp);  // Read the first character
+    printf("First character: %c\n", ch);
+    fclose(fp);
+}
+
+                </pre>
+                <li><strong>"b" (Binary Mode):</strong> This mode is used for handling binary files. It can be combined with other modes ("rb", "wb", "ab", etc.).</li>
+                <pre>
+FILE *fp = fopen("file.bin", "wb");
+if (fp != NULL) {
+    int data = 123;
+    fwrite(&data, sizeof(data), 1, fp);  // Writing binary data
+    fclose(fp);
+}
+
+                </pre>
+            </ol>
+
+            <h2>3. File Handling Example (Read, Write, Append)</h2>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    FILE *fp;
+
+    // Write data to the file
+    fp = fopen("example.txt", "w");
+    if (fp != NULL) {
+        fprintf(fp, "This is a test file.\n");
+        fclose(fp);
+    } else {
+        printf("Error opening file for writing.\n");
+    }
+
+    // Read data from the file
+    fp = fopen("example.txt", "r");
+    if (fp != NULL) {
+        char ch;
+        while ((ch = fgetc(fp)) != EOF) {
+            putchar(ch);  // Print the data to the console
+        }
+        fclose(fp);
+    } else {
+        printf("Error opening file for reading.\n");
+    }
+
+    // Append data to the file
+    fp = fopen("example.txt", "a");
+    if (fp != NULL) {
+        fprintf(fp, "Appended text.\n");
+        fclose(fp);
+    } else {
+        printf("Error opening file for appending.\n");
+    }
+
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h2>4. Advantages and Disadvantages of File Handling</h2>
+            <h3>Advantages:</h3>
+            <ul>
+                <li><strong>Persistence:</strong> Files allow storing data persistently, making it accessible between program executions.</li>
+                <li><strong>Data Management:</strong> Files can be used to manage large data sets in external storage.</li>
+                <li><strong>Flexibility:</strong> Files can be read and written in various formats (binary or text).</li>
+                <li><strong>Multiple Operations:</strong> Allows operations like search, update, and delete on large data sets.</li>
+            </ul>
+
+            <h3>Disadvantages:</h3>
+            <ul>
+                <li><strong>Performance:</strong> File I/O is generally slower than working with memory.</li>
+                <li><strong>Error Handling:</strong> File handling requires proper error checking, especially for file opening and closing.</li>
+                <li><strong>Concurrency:</strong> If multiple processes or threads try to access the file simultaneously, data corruption can occur.</li>
+                <li><strong>Security:</strong> Sensitive data can be vulnerable if the file is not securely handled.</li>
+            </ul>
+            <h2>Programming Question.. </h2>
+            <h3>1.Write a program to copy content from one file to another </h3>
+            <pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main() {
+    FILE *sourceFile, *destinationFile;
+    char ch;
+
+    sourceFile = fopen("source.txt", "r");
+    if (sourceFile == NULL) {
+        printf("Error: Could not open source file.\n");
+        return 1;
+    }
+
+    destinationFile = fopen("destination.txt", "w");
+    if (destinationFile == NULL) {
+        printf("Error: Could not open destination file.\n");
+        fclose(sourceFile);
+        return 1;
+    }
+
+    while ((ch = fgetc(sourceFile)) != EOF) {
+        fputc(ch, destinationFile);
+    }
+
+    printf("File content copied successfully from source.txt to destination.txt.\n");
+
+    fclose(sourceFile);
+    fclose(destinationFile);
+
+    return 0;
+}
+
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>2.Write a Program to Read and Display the Contents of a File.</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main() {
+    FILE *file;
+    char filename[100];
+    char ch;
+
+    printf("Enter the filename to open: ");
+    scanf("%s", filename);
+
+    file = fopen(filename, "r");
+
+    if (file == NULL) {
+        printf("Error: Could not open the file %s\n", filename);
+        exit(1);
+    }
+
+    printf("Contents of the file %s are:\n", filename);
+    while ((ch = fgetc(file)) != EOF) {
+        putchar(ch);
+    }
+
+    fclose(file);
+
+    return 0;
+}
+
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>3.Write a Program to Write User Input to a File</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main() {
+    FILE *file;
+    char filename[100];
+    char input[1000];
+
+    printf("Enter the filename to save data: ");
+    scanf("%s", filename);
+
+    file = fopen(filename, "w");
+
+    if (file == NULL) {
+        printf("Error: Could not open the file %s\n", filename);
+        exit(1);
+    }
+
+    printf("Enter the text to write to the file (press Enter to finish):\n");
+    getchar(); // To consume the newline character left by previous scanf
+    fgets(input, sizeof(input), stdin);
+
+    fprintf(file, "%s", input);
+
+    fclose(file);
+
+    printf("Data has been written to the file %s\n", filename);
+
+    return 0;
+}
+
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>4.Count the Number of Words in a File</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main() {
+    FILE *file;
+    char filename[100];
+    char ch;
+    int inWord = 0;
+    int wordCount = 0;
+
+    printf("Enter the filename to count words: ");
+    scanf("%s", filename);
+
+    file = fopen(filename, "r");
+
+    if (file == NULL) {
+        printf("Error: Could not open the file %s\n", filename);
+        return 1;
+    }
+
+    while ((ch = fgetc(file)) != EOF) {
+        if (isalpha(ch) || ch == '\'' || ch == '-') {
+            if (!inWord) {
+                inWord = 1;
+                wordCount++;
+            }
+        } else {
+            inWord = 0;
+        }
+    }
+
+    fclose(file);
+
+    printf("The file contains %d words.\n", wordCount);
+
+    return 0;
+}
+
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>5.Program to Merge Two Files into One</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main() {
+    FILE *file1, *file2, *mergedFile;
+    char filename1[100], filename2[100], mergedFilename[100];
+    char ch;
+
+    printf("Enter the first file name: ");
+    scanf("%s", filename1);
+
+    printf("Enter the second file name: ");
+    scanf("%s", filename2);
+
+    printf("Enter the name for the merged file: ");
+    scanf("%s", mergedFilename);
+
+    file1 = fopen(filename1, "r");
+    if (file1 == NULL) {
+        printf("Error: Could not open file %s\n", filename1);
+        return 1;
+    }
+
+    file2 = fopen(filename2, "r");
+    if (file2 == NULL) {
+        printf("Error: Could not open file %s\n", filename2);
+        return 1;
+    }
+
+    mergedFile = fopen(mergedFilename, "w");
+    if (mergedFile == NULL) {
+        printf("Error: Could not create the merged file %s\n", mergedFilename);
+        return 1;
+    }
+
+    // Copy contents of the first file to the merged file
+    while ((ch = fgetc(file1)) != EOF) {
+        fputc(ch, mergedFile);
+    }
+
+    // Copy contents of the second file to the merged file
+    while ((ch = fgetc(file2)) != EOF) {
+        fputc(ch, mergedFile);
+    }
+
+    printf("The files have been merged successfully into %s\n", mergedFilename);
+
+    fclose(file1);
+    fclose(file2);
+    fclose(mergedFile);
+
+    return 0;
+}
+
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <a href="sorting.html" class="back-button">Previous page</a>
+            <a href="enum.html" class="back-button">Next page</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: codeprogramix@gmail.com</p>
+                <p>Phone: +91 9973186195</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="icons8-facebook.svg" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="icons8-instagram.svg" alt="Twitter Icon"></a>
+                    <a href="#" aria-label="LinkedIn"><img src="icons8-linkedin.svg" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 CodeProgramix. All rights reserved.</p>
+    </footer>
+</body>
+</html>

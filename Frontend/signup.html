@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - CodeProgramix</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">CodeProgramix</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="auth-form">
+            <h1>Sign Up for CodeProgramix</h1>
+            <div id="signup-status">
+                <!-- coming from JS -->
+            </div>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="username">User Name</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required minlength="8">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required minlength="8">
+                </div>
+                <button type="submit" class="cta-button" id="register">Sign Up</button>
+            </form>
+            <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+
+            <!-- Container to show user id after sign-up -->
+            <p id="error-message" style="color:red; display:none;">Passwords do not match!</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: codeprogramix@gmail.com</p>
+                <p>Phone: +91 9973186195</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="icons8-facebook.svg" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="icons8-instagram.svg" alt="Twitter Icon"></a>
+                    <a href="#" aria-label="LinkedIn"><img src="icons8-linkedin.svg" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 CodeProgramix. All rights reserved.</p>
+    </footer>
+</body>
+
+<script>
+    document.getElementById('signup-form').addEventListener('submit', function (event) {
+        event.preventDefault();  // Prevent form from submitting the default way
+
+        // Get user inputs
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+
+        // Check if password and confirm password match
+        if (password !== confirmPassword) {
+            document.getElementById('error-message').style.display = 'block';  // Show error message
+            return;
+        } else {
+            document.getElementById('error-message').style.display = 'none';  // Hide error message
+        }
+
+
+        // Show a success message to the use
+        signup(username, email, password);
+    });
+
+    //Sign Up
+    async function signup(username, email, password) {
+
+        const response = await fetch('http://localhost:5001/api/auth/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, email, password })
+        });
+
+        const data = await response.json();
+
+        let statusElement = document.getElementById('signup-status');
+        if (data.message == undefined) {
+            statusElement.innerHTML = `<p style="color: red;">User Already exists, Please login</p>`;
+            setTimeout(function () {
+                window.location.href = "login.html";
+            }, 5000);
+        } else {
+            statusElement.innerHTML = `<p style="color: green;">Signup successfull..., Please login</p>`;
+            setTimeout(function () {
+                window.location.href = "login.html";
+            }, 5000);
+        }
+    }
+
+</script>
+
+</html>

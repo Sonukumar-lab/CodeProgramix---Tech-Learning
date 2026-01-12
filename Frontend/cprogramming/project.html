@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects in C - CodeProgramix</title>
+    <link rel="stylesheet" href="all-cse.css">
+    <script>
+        function confirmPayment() {
+            const userConfirmed = confirm("To access all projects, you need to pay 19/- rupees. Do you want to proceed?");
+            if (userConfirmed) {
+                // Redirect to the payment page
+                window.location.href = "../payment.html"; // Replace with your actual payment page URL
+            } else {
+                alert("You are not allowed to access the content.");
+            }
+        }
+
+        // Function for Complete button
+        function completeCourse() {
+            // Show the congratulations pop-up
+            alert("Congratulations! Your course is completed. Learn other skills and enhance your knowledge.");
+            
+            // Redirect to the course page
+            window.location.href = "../course.html"; // Replace with your actual course page URL
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CodeProgramix</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../course.html">Course</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-details">
+            <h1>Project Ideas in C</h1>
+            <p>Here are some interesting projects you can try to build using the C programming language:</p>
+            
+            <h2>1. Library Management System</h2>
+            <p>A system to manage the books in a library, allowing users to borrow and return books, and view available books.</p>
+            
+            <h2>2. Student Management System</h2>
+            <p>A system to manage student data, such as storing, updating, and deleting student records, and displaying the list of students.</p>
+            
+            <h2>3. Simple Bank Management System</h2>
+            <p>A simple banking system where users can check their balance, deposit, withdraw money, and view transaction history.</p>
+            
+            <h2>4. Online Quiz System</h2>
+            <p>A system to create, manage, and take quizzes. It can keep track of users' scores and display correct answers.</p>
+            
+            <h2>5. To-Do List Application</h2>
+            <p>An application where users can add, remove, and view tasks they need to complete. It helps in managing daily tasks efficiently.</p>
+
+            <h3><p>Feel free to try out these project ideas and enhance your C programming skills!</p></h3>
+
+            <p><a href="javascript:void(0);" onclick="confirmPayment()">👉 Access the all project</a></p>
+            
+            <a href="important.html" class="back-button">Previous page</a><!-- Replace this line -->
+            <a href="javascript:void(0);" class="back-button" onclick="alertAndRedirect()">Generate Certificate</a>
+            <a href="javascript:void(0);" class="back-button" onclick="completeCourse()">Complete</a> <!-- Updated button with onclick event -->
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: codeprogramix@gmail.com</p>
+                <p>Phone: +91 9973186195</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="icons8-facebook.svg" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="icons8-instagram.svg" alt="Twitter Icon"></a>
+                    <a href="#" aria-label="LinkedIn"><img src="icons8-linkedin.svg" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 CodeProgramix. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+<script>
+    function alertAndRedirect() {
+        alert('Please complete the assessment first.');
+        window.location.href = 'assessment.html'; // Adjust the path if your assessment.html is in a different folder
+    }
+</script>

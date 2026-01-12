@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions in C & Recursion: Call by Value and Call by Reference</title>
+    <link rel="stylesheet" href="all-cse.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CodeProgramix</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../course.html">Course</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-details">
+            <h1>Functions in C & Recursion: Call by Value and Call by Reference</h1>
+            <p>
+                In C programming, functions are used to organize code into reusable blocks that can be executed when called. Functions help to reduce redundancy, improve code readability, and manage larger programs effectively. There are two main concepts related to functions:
+            </p>
+            <ul>
+                <li>1. Call by Value</li>
+                <li>2. Call by Reference</li>
+            </ul>
+            <p>
+                Additionally, recursion is a key concept in programming where a function calls itself to solve a problem. Let's explore each concept with examples, followed by some practice questions.
+            </p>
+            
+            <h2>1. Functions in C</h2>
+            <p>A function in C is a block of code that performs a specific task. It allows you to divide your program into smaller, modular, and reusable pieces.</p>
+            <h3>Syntax:</h3>
+            <pre>
+return_type function_name(parameter_list) {
+    // body of the function
+}
+            </pre>
+            <ul>
+                <li><strong>return_type:</strong> Type of value the function returns (e.g., int, float, void).</li>
+                <li><strong>function_name:</strong> Name of the function.</li>
+                <li><strong>parameter_list:</strong> List of parameters passed to the function (optional).</li>
+            </ul>
+            <h3>Example:</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+void greet() {
+    printf("Hello, World!\n");
+}
+int add(int a, int b) {
+    return a + b;
+}
+int main() {
+    greet();  // Calling the greet function
+    int sum = add(5, 3);  // Calling the add function
+    printf("Sum: %d\n", sum);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h4>Dry Run:</h4>
+            <ul>
+                <li>greet() is called, so "Hello, World!" is printed.</li>
+                <li>add(5, 3) is called, which returns 8, and the sum is printed.</li>
+            </ul>
+            <h4>Output:</h4>
+            <pre>
+Hello, World!
+Sum: 8
+            </pre>
+
+            <h2>2. Call by Value</h2>
+            <p>In call by value, the actual value of the arguments is passed to the function. This means that the function works on the copies of the actual arguments, and changes made to the parameters inside the function do not affect the original arguments.</p>
+            <h3>Syntax:</h3>
+            <pre>
+return_type function_name(parameter_list) {
+    // body of the function
+    // modifies only the local copies of arguments
+}
+            </pre>
+            <h3>Example:</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+void modifyValue(int a) {
+    a = a + 10;  // This will not affect the original variable
+    printf("Inside function: %d\n", a);
+}
+int main() {
+    int num = 5;
+    printf("Before function call: %d\n", num);
+    modifyValue(num);  // Passing value of num
+    printf("After function call: %d\n", num);  // Value of num remains unchanged
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h4>Dry Run:</h4>
+            <ul>
+                <li>num is passed as 5 to modifyValue().</li>
+                <li>Inside modifyValue(), the local variable a becomes 15, but this change does not affect num in the main function.</li>
+                <li>Therefore, num remains 5 after the function call.</li>
+            </ul>
+            <h4>Output:</h4>
+            <pre>
+Before function call: 5
+Inside function: 15
+After function call: 5
+            </pre>
+
+            <h2>3. Call by Reference</h2>
+            <p>In call by reference, the memory address (reference) of the actual argument is passed to the function. This means that the function works on the actual variables, and changes made inside the function will affect the original arguments.</p>
+            <h3>Syntax:</h3>
+            <pre>
+return_type function_name(parameter_list) {
+    // body of the function
+    // modifies the actual arguments passed to the function
+}
+            </pre>
+            <h3>Example:</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+void modifyValue(int *a) {
+    *a = *a + 10;  // This will modify the actual variable
+    printf("Inside function: %d\n", *a);
+}
+int main() {
+    int num = 5;
+    printf("Before function call: %d\n", num);
+    modifyValue(&num);  // Passing address of num
+    printf("After function call: %d\n", num);  // Value of num is modified
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h4>Dry Run:</h4>
+            <ul>
+                <li>The address of num is passed to modifyValue().</li>
+                <li>Inside modifyValue(), the value of num is updated to 15 because the function operates on the actual memory location of num.</li>
+            </ul>
+            <h4>Output:</h4>
+            <pre>
+Before function call: 5
+Inside function: 15
+After function call: 15
+            </pre>
+
+            <h2>4. Recursion</h2>
+            <p>Recursion is a technique where a function calls itself to solve smaller instances of the same problem. It is often used to solve problems that can be broken down into smaller, similar sub-problems.</p>
+            <h3>Example (Factorial using recursion):</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int factorial(int n) {
+    if (n == 0 || n == 1) {
+        return 1;  // Base case
+    } else {
+        return n * factorial(n - 1);  // Recursive call
+    }
+}
+int main() {
+    int num = 5;
+    int result = factorial(num);
+    printf("Factorial of %d is %d\n", num, result);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h4>Dry Run:</h4>
+            <ul>
+                <li>factorial(5) is called.</li>
+                <li>This calls factorial(4), which calls factorial(3), and so on, until factorial(0) is reached, which returns 1.</li>
+                <li>Then, the results are multiplied back up the call stack: 5 * 4 * 3 * 2 * 1 = 120.</li>
+            </ul>
+            <h4>Output:</h4>
+            <pre>
+Factorial of 5 is 120
+            </pre>
+
+            <h2>Call by Value vs Call by Reference</h2>
+            <h3>1. Call by Value:</h3>
+            <ul>
+                <li>A copy of the actual argument is passed to the function.</li>
+                <li>Modifications inside the function do not affect the actual argument.</li>
+            </ul>
+
+            <h3>2. Call by Reference:</h3>
+            <ul>
+                <li>The memory address (reference) of the argument is passed to the function.</li>
+                <li>Modifications inside the function affect the actual argument.</li>
+            </ul>
+            <h2>Programming Questions:</h2>
+            <h3>1.	Write a program to swap two numbers using call by value.</h3>
+                <pre>
+<code>#include &lt;stdio.h&gt;</code>
+void swap(int a, int b) {
+    int temp;
+    temp = a;
+    a = b;
+    b = temp;
+    printf("Inside swap function: a = %d, b = %d\n", a, b);
+}
+
+int main() {
+    int num1, num2;
+    printf("Enter the value of num1: ");
+    scanf("%d", &num1);
+    printf("Enter the value of num2: ");
+    scanf("%d", &num2);
+
+    printf("Before swap: num1 = %d, num2 = %d\n", num1, num2);
+    swap(num1, num2);
+
+    printf("After swap function call: num1 = %d, num2 = %d\n", num1, num2);
+
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+        <h3>2.	Write a program to swap two numbers using call by reference.</h3>
+             <pre>
+<code>#include &lt;stdio.h&gt;</code>
+void swap(int *a, int *b) {
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+    printf("Inside swap function: a = %d, b = %d\n", *a, *b);
+}
+
+int main() {
+    int num1, num2;
+    printf("Enter the value of num1: ");
+    scanf("%d", &num1);
+    printf("Enter the value of num2: ");
+    scanf("%d", &num2);
+
+    printf("Before swap: num1 = %d, num2 = %d\n", num1, num2);
+    swap(&num1, &num2);
+
+    printf("After swap function call: num1 = %d, num2 = %d\n", num1, num2);
+
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+        <h3>3.	Write a program to calculate the sum of digits of a number using recursion.</h3>
+                <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int sum_of_digits(int n) {
+    if (n == 0) {
+        return 0;
+    } else {
+        return (n % 10) + sum_of_digits(n / 10);
+    }
+}
+
+int main() {
+    int num;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+    
+    printf("The sum of digits is: %d\n", sum_of_digits(num));
+    
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h2>Practice Questions</h2>
+            <h3>1.Write a program to find the nth Fibonacci number using recursion.</h3>
+            <h3>2.Write a program to find the greatest of three numbers using functions (call by value).</h3>
+            <h3>3.Write a program to calculate the power of a number (base raised to the exponent) using recursion.</h3>
+            <h3>4.Write a program to reverse a number using call by reference.</h3>
+            <h3>5.Write a program to check if a number is prime using recursion.</h3>
+            <h3>6.Write a program to find the factorial of a number using iteration and recursion and compare the two methods.</h3>
+            <h3>7.Write a program to count the number of digits in a number using recursion.</h3>
+            <a href="control.html" class="back-button">Previous page</a>
+            <a href="pointer.html" class="back-button">Next page</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: codeprogramix@gmail.com</p>
+                <p>Phone: +91 9973186195</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="icons8-facebook.svg" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="icons8-instagram.svg" alt="Twitter Icon"></a>
+                    <a href="#" aria-label="LinkedIn"><img src="icons8-linkedin.svg" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 CodeProgramix. All rights reserved.</p>
+    </footer>
+</body>
+</html>

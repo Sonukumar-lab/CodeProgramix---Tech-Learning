@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strings in C Programming - CodeProgramix</title>
+    <link rel="stylesheet" href="all-cse.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CodeProgramix</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../course.html">Course</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-details">
+            <h1>Strings in C Programming</h1>
+            <p>
+                In C programming, a string is a sequence of characters terminated by a null character ('\0'). Strings are handled as arrays of characters. Each element of the array is a character, and the null character marks the end of the string.
+            </p>
+
+            <h2>1. Declaring and Initializing Strings</h2>
+            <p>A string can be declared as a character array or can be initialized using string literals.</p>
+            <p>Syntax:</p>
+            <pre>
+char string_name[size];
+OR
+char string_name[] = "string_literal";
+            </pre>
+            <ul>
+                <li><strong>string_name[]:</strong> An array of characters.</li>
+                <li><strong>size:</strong> The size of the array (can be omitted when initializing with a literal).</li>
+                <li><strong>"string_literal":</strong> The string literal automatically includes the null character ('\0').</li>
+            </ul>
+            <h3>Example: String Declaration and Initialization</h3>
+            <pre>
+#include &lt;stdio.h&gt
+int main() {
+    // Declaring a string using a character array
+    char str1[] = "Hello, World!";
+    
+    // Declaring a string with a fixed size
+    char str2[20] = "Hello, C!";
+    
+    // Printing the strings
+    printf("str1: %s\n", str1);
+    printf("str2: %s\n", str2);
+    
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Dry Run:</h3>
+            <ul>
+                <li>str1 is initialized with "Hello, World!", which automatically includes the null character '\0'.</li>
+                <li>str2 is initialized with "Hello, C!", and extra space is allocated for more characters if needed.</li>
+            </ul>
+            <h3>Output:</h3>
+            <pre>
+str1: Hello, World!
+str2: Hello, C!
+            </pre>
+
+            <h2>2. String Input and Output</h2>
+            <p>Strings in C can be inputted using the scanf() function or gets() (though gets() is discouraged due to potential buffer overflow risks). For safer input, fgets() is recommended.</p>
+            <h3>Example: Using scanf and fgets to take input:</h3>
+            <pre>
+#include &lt;stdio.h&gt
+int main() {
+    char str[100];
+    
+    // Using scanf (unsafe for strings with spaces)
+    printf("Enter a string using scanf: ");
+    scanf("%s", str);  // Only takes a single word, not spaces.
+    printf("You entered: %s\n", str);
+    
+    // Using fgets (safe for strings with spaces)
+    printf("Enter a string using fgets: ");
+    fgets(str, 100, stdin);  // Reads an entire line, including spaces.
+    printf("You entered: %s\n", str);
+    
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Dry Run:</h3>
+            <ul>
+                <li>scanf reads a single word and stores it in str.</li>
+                <li>fgets reads an entire line (including spaces) into str until a newline or the buffer size is reached.</li>
+            </ul>
+            <h3>Output:</h3>
+            <pre>
+Enter a string using scanf: Hello
+You entered: Hello
+
+Enter a string using fgets: Hello World
+You entered: Hello World
+            </pre>
+
+            <h2>3. String Functions in C</h2>
+            <p>C provides several built-in functions to manipulate strings. These functions are available in the <code>&lt;string.h&gt;</code> library.</p>
+            <h3>Common String Functions:</h3>
+            <ul>
+                <li><strong>strlen(str)</strong> - Returns the length of the string (not including the null character).</li>
+                <li><strong>strcpy(destination, source)</strong> - Copies the string from source to destination.</li>
+                <li><strong>strcat(destination, source)</strong> - Concatenates source string to the end of destination.</li>
+                <li><strong>strcmp(str1, str2)</strong> - Compares two strings lexicographically.</li>
+                <li><strong>strchr(str, character)</strong> - Finds the first occurrence of character in str.</li>
+            </ul>
+            <h3>Example: Using String Functions</h3>
+            <pre>
+#include &lt;stdio.h&gt
+#include &lt;string.h&gt
+int main() {
+    char str1[50] = "Hello";
+    char str2[] = "World!";
+    char str3[50];
+    
+    // Copying str2 to str3
+    strcpy(str3, str2);
+    printf("str3 after strcpy: %s\n", str3);
+    
+    // Concatenating str2 to str1
+    strcat(str1, str2);
+    printf("str1 after strcat: %s\n", str1);
+    
+    // Length of str1
+    printf("Length of str1: %lu\n", strlen(str1));
+    
+    // Comparing str1 and str2
+    int result = strcmp(str1, str2);
+    if (result == 0) {
+        printf("str1 and str2 are equal.\n");
+    } else if (result < 0) {
+        printf("str1 is less than str2.\n");
+    } else {
+        printf("str1 is greater than str2.\n");
+    }
+    
+    // Finding a character in str1
+    char *ptr = strchr(str1, 'o');
+    if (ptr != NULL) {
+        printf("Character 'o' found at position: %ld\n", ptr - str1);
+    }
+    
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Dry Run:</h3>
+            <ul>
+                <li>strcpy copies "World!" into str3.</li>
+                <li>strcat concatenates "World!" to "Hello", making str1 = "HelloWorld!".</li>
+                <li>strlen gives the length of "HelloWorld!", which is 12.</li>
+                <li>strcmp compares the two strings, and based on lexicographical order, determines the result.</li>
+                <li>strchr finds the first occurrence of 'o' in str1.</li>
+            </ul>
+            <h3>Output:</h3>
+            <pre>
+str3 after strcpy: World!
+str1 after strcat: HelloWorld!
+Length of str1: 12
+str1 is greater than str2.
+Character 'o' found at position: 4
+            </pre>
+
+            <h2>4. String Searching</h2>
+            <p>String searching involves looking for a substring or a specific character in a string. The two most common methods for searching in C are strstr (for substring) and strchr (for a specific character).</p>
+            <h3>Example: Using strstr and strchr for Searching</h3>
+            <pre>
+#include &lt;stdio.h&gt
+#include &lt;string.h&gt
+int main() {
+    char str[] = "Programming in C is fun!";
+    
+    // Search for a substring
+    char *substr = strstr(str, "C");
+    if (substr != NULL) {
+        printf("Found substring 'C' at position: %ld\n", substr - str);
+    } else {
+        printf("Substring not found.\n");
+    }
+    
+    // Search for a character
+    char *charPos = strchr(str, 'i');
+    if (charPos != NULL) {
+        printf("Found character 'i' at position: %ld\n", charPos - str);
+    } else {
+        printf("Character not found.\n");
+    }
+    
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Dry Run:</h3>
+            <ul>
+                <li>strstr searches for the substring "C" and returns a pointer to its first occurrence.</li>
+                <li>strchr searches for the character 'i' and returns a pointer to its first occurrence.</li>
+            </ul>
+            <h3>Output:</h3>
+            <pre>
+Found substring 'C' at position: 14
+Found character 'i' at position: 2
+            </pre>
+
+            <h2>5. String Comparison</h2>
+            <p>String comparison is used to compare two strings lexicographically. The function strcmp is used for this purpose.</p>
+            <h3>Example: Comparing Two Strings</h3>
+            <pre>
+#include &lt;stdio.h&gt
+#include &lt;string.h&gt
+int main() {
+    char str1[] = "Apple";
+    char str2[] = "Orange";
+    
+    int result = strcmp(str1, str2);
+    if (result == 0) {
+        printf("The strings are equal.\n");
+    } else if (result < 0) {
+        printf("str1 is lexicographically smaller than str2.\n");
+    } else {
+        printf("str1 is lexicographically larger than str2.\n");
+    }
+    
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Dry Run:</h3>
+            <ul>
+                <li>strcmp compares "Apple" and "Orange". Since "Apple" comes lexicographically before "Orange", the result will be negative.</li>
+            </ul>
+            <h3>Output:</h3>
+            <pre>
+str1 is lexicographically smaller than str2.
+            </pre>
+            <h2>Practice Questions on Strings</h2>
+            <ol>
+                <li><strong>Write a program to reverse a string.</strong></li>
+                <li><strong>Write a program to check if a string is a palindrome (reads the same forwards and backwards).</strong></li>
+                <li><strong>Write a program to count the number of vowels in a string.</strong></li>
+                <li><strong>Write a program to find the length of a string without using strlen().</strong></li>
+                <li><strong>Write a program to concatenate two strings without using strcat().</strong></li>
+                <li><strong>Write a program to compare two strings without using strcmp().</strong></li>
+                <li><strong>Write a program to find the first occurrence of a character in a string.</strong></li>
+                <li><strong>Write a program to remove all whitespaces from a string.</strong></li>
+                <li><strong>Write a program to replace all occurrences of a character in a string with another character.</strong></li>
+                <li><strong>Write a program to count the frequency of each character in a string.</strong></li>
+            </ol>
+            <a href="array.html" class="back-button">Previous page</a>
+            <a href="sorting.html" class="back-button">Next page</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: codeprogramix@gmail.com</p>
+                <p>Phone: +91 9973186195</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="icons8-facebook.svg" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="icons8-instagram.svg" alt="Twitter Icon"></a>
+                    <a href="#" aria-label="LinkedIn"><img src="icons8-linkedin.svg" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 CodeProgramix. All rights reserved.</p>
+    </footer>
+</body>
+</html>

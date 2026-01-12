@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout Successful</title>
+    <style>
+        /* Basic Styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .logout-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        .logout-container h2 {
+            color: #4caf50; /* Green color for success message */
+            font-size: 32px;
+        }
+
+        .logout-container p {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .logout-container button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .logout-container button:hover {
+            background-color: #2c3e50;
+        }
+
+        .extra-message {
+            font-size: 16px;
+            margin-top: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-container">
+        <h2>Logout Successful</h2>
+        <p>You have successfully logged out of your account.</p>
+        <p>We hope to see you again soon!</p>
+        <div class="extra-message">
+            <p><strong>Click below to log back in and continue your learning journey!</strong></p>
+        </div>
+        <a href="login.html">
+            <button>Go to Login</button> <!-- Login button to redirect -->
+        </a>
+    </div>
+
+    <script>
+        // Optional: If you'd like to clear sessionStorage or localStorage, you can do that here
+        // Example: sessionStorage.clear(); or localStorage.clear();
+    </script>
+</body>
+</html>

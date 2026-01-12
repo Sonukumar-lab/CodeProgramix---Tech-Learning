@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operators in C - CodeProgramix</title>
+    <link rel="stylesheet" href="all-cse.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CodeProgramix</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../course.html">Course</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-details">
+            <h1>Operators in C</h1>
+            <p>Operators in C are special symbols used to perform operations on variables and values. They are the building blocks of expressions in C. Understanding operators is essential for performing calculations, comparisons, logical operations, and manipulating data at a bit level.</p>
+
+            <h2>Types of Operators in C</h2>
+            <p>The operators in C are categorized into several types based on their functionality:</p>
+            <ol>
+                <li>Arithmetic Operators</li>
+                <li>Relational Operators</li>
+                <li>Logical Operators</li>
+                <li>Bitwise Operators</li>
+                <li>Assignment Operators</li>
+                <li>Increment and Decrement Operators</li>
+                <li>Conditional (Ternary) Operator</li>
+                <li>Sizeof Operator</li>
+                <li>Comma Operator</li>
+            </ol>
+
+            <h2>1. Arithmetic Operators</h2>
+            <p>Arithmetic operators are used to perform basic mathematical calculations.</p>
+            <ul>
+                <li>+: Addition</li>
+                <li>-: Subtraction</li>
+                <li>*: Multiplication</li>
+                <li>/ : Division</li>
+                <li>%: Modulus (remainder)</li>
+            </ul>
+            <h3>Example:</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 10, b = 3;
+    int sum = a + b;       // Addition
+    int diff = a - b;      // Subtraction
+    int product = a * b;   // Multiplication
+    int quotient = a / b;  // Division
+    int remainder = a % b; // Modulus
+    printf("Sum: %d\n", sum);
+    printf("Difference: %d\n", diff);
+    printf("Product: %d\n", product);
+    printf("Quotient: %d\n", quotient);
+    printf("Remainder: %d\n", remainder);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Output:</h3>
+            <pre>
+Sum: 13
+Difference: 7
+Product: 30
+Quotient: 3
+Remainder: 1
+            </pre>
+
+            <h2>2. Relational Operators</h2>
+            <p>Relational operators are used to compare two values and return a boolean result: 1 for true and 0 for false.</p>
+            <ul>
+                <li>==: Equal to</li>
+                <li>!=: Not equal to</li>
+                <li>>: Greater than</li>
+                <li><: Less than</li>
+                <li>>=: Greater than or equal to</li>
+                <li><=: Less than or equal to</li>
+            </ul>
+            <h3>Example:</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 10, b = 5;
+    printf("a == b: %d\n", (a == b));  // 0 (false)
+    printf("a != b: %d\n", (a != b));  // 1 (true)
+    printf("a > b: %d\n", (a > b));    // 1 (true)
+    printf("a < b: %d\n", (a < b));    // 0 (false)
+    printf("a >= b: %d\n", (a >= b));  // 1 (true)
+    printf("a <= b: %d\n", (a <= b));  // 0 (false)
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Output:</h3>
+            <pre>
+a == b: 0
+a != b: 1
+a > b: 1
+a < b: 0
+a >= b: 1
+a <= b: 0
+            </pre>
+
+            <h2>3. Logical Operators</h2>
+            <p>Logical operators are used to combine multiple conditions. They work on boolean values and return true (1) or false (0).</p>
+            <ul>
+                <li>&&: Logical AND</li>
+                <li>||: Logical OR</li>
+                <li>!: Logical NOT</li>
+            </ul>
+            <h3>Example:</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 1, b = 0;
+    printf("a && b: %d\n", (a && b)); // 0 (false)
+    printf("a || b: %d\n", (a || b)); // 1 (true)
+    printf("!a: %d\n", !a);           // 0 (false)
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Output:</h3>
+            <pre>
+a && b: 0
+a || b: 1
+!a: 0
+            </pre>
+
+            <h2>4. Bitwise Operators</h2>
+            <p>Bitwise operators are used to perform bit-level operations on integer types.</p>
+            <ul>
+                <li>&: Bitwise AND</li>
+                <li>|: Bitwise OR</li>
+                <li>^: Bitwise XOR</li>
+                <li>~: Bitwise NOT</li>
+                <li><<: Left shift</li>
+                <li>>: Right shift</li>
+            </ul>
+            <h3>Example:</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 5, b = 3;
+    printf("a & b: %d\n", (a & b));  // Bitwise AND (result = 1)
+    printf("a | b: %d\n", (a | b));  // Bitwise OR (result = 7)
+    printf("a ^ b: %d\n", (a ^ b));  // Bitwise XOR (result = 6)
+    printf("~a: %d\n", (~a));        // Bitwise NOT (result = -6)
+    printf("a << 1: %d\n", (a << 1)); // Left shift (result = 10)
+    printf("a >> 1: %d\n", (a >> 1)); // Right shift (result = 2)
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Output:</h3>
+            <pre>
+a & b: 1
+a | b: 7
+a ^ b: 6
+~a: -6
+a << 1: 10
+a >> 1: 2
+            </pre>
+
+            <h2>5. Assignment Operators</h2>
+            <p>Assignment operators are used to assign values to variables.</p>
+            <ul>
+                <li>=: Simple assignment</li>
+                <li>+=: Add and assign</li>
+                <li>-=: Subtract and assign</li>
+                <li>*=: Multiply and assign</li>
+                <li>/=: Divide and assign</li>
+                <li>%=: Modulus and assign</li>
+            </ul>
+            <h3>Example:</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 10;
+    a += 5; // a = a + 5
+    printf("a += 5: %d\n", a);
+    
+    a -= 3; // a = a - 3
+    printf("a -= 3: %d\n", a);
+    
+    a *= 2; // a = a * 2
+    printf("a *= 2: %d\n", a);
+    
+    a /= 4; // a = a / 4
+    printf("a /= 4: %d\n", a);
+    
+    a %= 3; // a = a % 3
+    printf("a %%= 3: %d\n", a);
+
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Output:</h3>
+            <pre>
+a += 5: 15
+a -= 3: 12
+a *= 2: 24
+a /= 4: 6
+a %= 3: 0
+            </pre>
+
+            <h2>6. Increment and Decrement Operators</h2>
+            <p>Increment and decrement operators are used to increase or decrease a variable's value by 1.</p>
+            <ul>
+                <li>++: Increment operator</li>
+                <li>--: Decrement operator</li>
+            </ul>
+            <h3>Example:</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 5;
+    printf("a++: %d\n", a++);  // Post-increment
+    printf("++a: %d\n", ++a);  // Pre-increment
+    printf("a--: %d\n", a--);  // Post-decrement
+    printf("--a: %d\n", --a);  // Pre-decrement
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Output:</h3>
+            <pre>
+a++: 5
+++a: 7
+a--: 7
+--a: 5
+            </pre>
+            <h2>7. Conditional (Ternary) Operator</h2>
+            <p>The conditional operator is a shorthand for an if-else statement.</p>
+            <ul>
+                <li>?:: Conditional (Ternary) operator</li>
+            </ul>
+            <h3>Example:</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 5, b = 3;
+    
+    // If a is greater than b, result is a, else result is b
+    int result = (a > b) ? a : b;
+    printf("The greater value is: %d\n", result);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Output:</h3>
+            <pre>
+The greater value is: 5
+            </pre>
+            <h2>8. Sizeof Operator</h2>
+            <p>The sizeof operator is used to determine the size (in bytes) of a data type or variable.</p>
+            <ul>
+                <li>sizeof(type) </li>
+                <li>sizeof expression</li>
+            </ul>
+            <h3>Example:</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 10;
+    double b = 3.14;
+    char c = 'A';
+    printf("Size of int: %zu bytes\n", sizeof(a));
+    printf("Size of double: %zu bytes\n", sizeof(b));
+    printf("Size of char: %zu byte\n", sizeof(c));
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Output:</h3>
+            <pre>
+Size of int: 4 bytes
+Size of double: 8 bytes
+Size of char: 1 byte
+            </pre>
+            <h2>9. Comma Operator</h2>
+            <p>The comma operator allows you to perform multiple expressions in a single statement. It evaluates each expression from left to right and returns the value of the last expression.</p>
+            <h3>Example:</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 1, b = 2, c = 3;
+    // Using the comma operator
+    int result = (a++, b++, c++);
+    printf("a: %d, b: %d, c: %d, result: %d\n", a, b, c, result);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Output:</h3>
+            <pre>
+a: 2, b: 3, c: 4, result: 3
+            </pre>
+            <h2>Practice Questions</h2>
+            <h3>1. Write a program to perform addition, subtraction, and multiplication of two numbers using arithmetic operators.</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a, b;
+    // Input two numbers
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
+
+    // Perform arithmetic operations
+    printf("Addition: %d\n", a + b);
+    printf("Subtraction: %d\n", a - b);
+    printf("Multiplication: %d\n", a * b);
+
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>2. Write a program to compare two numbers using relational operators and display if they are equal or which one is greater.</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a, b;
+    // Input two numbers
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
+    // Compare the numbers
+    if (a == b) {
+        printf("The numbers are equal.\n");
+    } else if (a > b) {
+        printf("%d is greater than %d.\n", a, b);
+    } else {
+        printf("%d is greater than %d.\n", b, a);
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>3. Write a program to check if a number is even or odd using the modulus operator.</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int n;
+    printf("Enter a number: ");
+    scanf("%d", &n);
+    if (n % 2 == 0) {
+        printf("%d is even.\n", n);
+    } else {
+        printf("%d is odd.\n", n);
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>4. Write a program to perform bitwise AND, OR, and XOR operations on two integers.</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a, b;
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
+    printf("Bitwise AND: %d\n", a & b);
+    printf("Bitwise OR: %d\n", a | b);
+    printf("Bitwise XOR: %d\n", a ^ b);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>5. Write a program to find the largest of three numbers using the conditional (ternary) operator.</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a, b, c;
+    printf("Enter three numbers: ");
+    scanf("%d %d %d", &a, &b, &c);
+    printf("Largest number: %d\n", (a > b && a > c) ? a : (b > c) ? b : c);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>6. Write a program to demonstrate the use of increment and decrement operators.</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 5;
+    printf("a = %d\n", a++);
+    printf("a = %d\n", --a);
+    printf("a = %d\n", ++a);
+    printf("a = %d\n", a--);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>7. Write a program that uses the sizeof operator to print the size of various data types (e.g., int, float, double, char).</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    printf("Size of int: %zu\n", sizeof(int));
+    printf("Size of float: %zu\n", sizeof(float));
+    printf("Size of double: %zu\n", sizeof(double));
+    printf("Size of char: %zu\n", sizeof(char));
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>8. Write a program that calculates the sum of integers from 1 to 100 using a loop and the arithmetic operators.</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int sum = 0;
+    for (int i = 1; i <= 100; i++) {
+        sum += i;
+    }
+    printf("Sum of integers from 1 to 100: %d\n", sum);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>9. Write a program to swap two numbers without using a third variable using arithmetic operators.</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a, b;
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
+    a = a + b;
+    b = a - b;
+    a = a - b;
+    printf("After swapping: a = %d, b = %d\n", a, b);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>10. Write a program to calculate the factorial of a number using a loop.</h3>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int n, factorial = 1;
+    printf("Enter a number: ");
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++) {
+        factorial *= i;
+    }
+    printf("Factorial of %d: %d\n", n, factorial);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <a href="variable.html" class="back-button">Previous page</a>
+            <a href="control.html" class="back-button">Next page</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: codeprogramix@gmail.com</p>
+                <p>Phone: +91 9973186195</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="icons8-facebook.svg" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="icons8-instagram.svg" alt="Twitter Icon"></a>
+                    <a href="#" aria-label="LinkedIn"><img src="icons8-linkedin.svg" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 CodeProgramix. All rights reserved.</p>
+    </footer>
+</body>
+</html>

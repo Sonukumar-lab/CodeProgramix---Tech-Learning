@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeProgramix - Your Complete Engineering Resource</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">CodeProgramix</a>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="signup.html" id="course-link">Sign Up</a></li>
+            </ul>
+        </nav> 
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to CodeProgramix</h1>
+            <p>Your one-stop platform for programming study materials, internships, and webinars.</p>
+            <a href="#features" class="cta-button">Explore Features</a>
+        </section>
+
+        <section id="features" class="features">
+            <h2>What We Offer</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <img src="photos/4364910-200.png" alt="Study Materials Icon" class="feature-icon">
+                    <h3>Comprehensive Study Materials</h3>
+                    <p>Access a wide range of engineering study resources, from textbooks to practice problems.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="photos/8920562.png" alt="Internships Icon" class="feature-icon">
+                    <h3>Internship Opportunities</h3>
+                    <p>Find and apply for internships tailored to your engineering field and interests.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="photos/5351504.png" alt="Webinars Icon" class="feature-icon">
+                    <h3>Online Webinars</h3>
+                    <p>Attend live webinars hosted by industry experts and leading academics.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Ready to Elevate Your programming Journey?</h2>
+            <p>Join CodeProgramix today and unlock a world of resources and opportunities!</p>
+            <a href="course.html" class="cta-button">Explore All Courses</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: codeprogramix@gmail.com</p>
+                <p>Phone: +91 9973186195</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="icons8-facebook.svg" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="icons8-instagram.svg" alt="Twitter Icon"></a>
+                    <a href="#" aria-label="LinkedIn"><img src="icons8-linkedin.svg" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 CodeProgramix. All rights reserved.</p>
+    </footer>
+    <div class="chat-container" id="chat-container">
+        <div class="chat-box" id="chat-box">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    
+    <script>
+
+
+        // Attach event listeners to Resources links
+        const courseLink = document.getElementById("course-link");
+        const footerCourseLink = document.getElementById("footer-course-link");
+
+        courseLink.addEventListener("click", redirectToSignup);
+        footerCourseLink.addEventListener("click", redirectToSignup);
+    </script>
+</body>
+</html>
+<script>
+    const chatBox = document.getElementById("chat-box");
+    const userInput = document.getElementById("user-input");
+
+    const courses = [
+        { name: "C Programming", duration: "4 weeks", description: "Learn the fundamentals of C programming." },
+        { name: "Master course web development", duration: "9 weeks", description: "Master HTML, CSS, JavaScript, and responsive web design." },
+        { name: "Data Structure with C++", duration: "12 weeks", description: "Master data structures and algorithms using C++." }
+    ];
+
+    function botMessage(message) {
+        const botMsgDiv = document.createElement("div");
+        botMsgDiv.classList.add("chat-message", "bot-message");
+        botMsgDiv.textContent = message;
+        chatBox.appendChild(botMsgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function userMessage(message) {
+        const userMsgDiv = document.createElement("div");
+        userMsgDiv.classList.add("chat-message", "user-message");
+        userMsgDiv.textContent = message;
+        chatBox.appendChild(userMsgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Function to handle sending a message
+    function sendMessage() {
+        const userText = userInput.value.trim();
+        if (userText) {
+            userMessage(userText);
+            userInput.value = "";
+
+            // Check for greetings and respond with course information
+            if (/hi|hello|hii/i.test(userText)) {
+                botMessage("Hello! We offer the following courses:");
+
+                courses.forEach(course => {
+                    const courseBtn = document.createElement("button");
+                    courseBtn.textContent = course.name;
+                    courseBtn.onclick = () => showCourseDetails(course);
+                    chatBox.appendChild(courseBtn);
+                });
+            } else {
+                botMessage("Sorry, I didn't understand that. Try saying 'Hi' or 'Hello'!");
+            }
+        }
+    }
+
+    // Function to display course details
+    function showCourseDetails(course) {
+        botMessage(`Course: ${course.name}`);
+        botMessage(`Duration: ${course.duration}`);
+        botMessage(`Description: ${course.description}`);
+
+        const resetBtn = document.createElement("button");
+        resetBtn.textContent = "Reset Chat";
+        resetBtn.onclick = resetChat;
+        resetBtn.classList.add("reset-button"); // optional: for styling
+        chatBox.appendChild(resetBtn);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+     function resetChat() {
+        chatBox.innerHTML = "";
+        userInput.value = "";
+    }
+    const chatContainer = document.getElementById("chat-container");
+
+    chatContainer.addEventListener("click", function (e) {
+        // Only expand if it's not already
+        if (!chatContainer.classList.contains("expanded")) {
+            chatContainer.classList.add("expanded");
+        }
+        // Prevent bubbling to avoid re-triggering click event
+        e.stopPropagation();
+    });
+
+    // Close chat when clicking outside
+    document.addEventListener("click", function (e) {
+        if (!chatContainer.contains(e.target)) {
+            chatContainer.classList.remove("expanded");
+        }
+    });
+</script>

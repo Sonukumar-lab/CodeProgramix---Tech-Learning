@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="student-dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"></div>
+            </div>
+            <nav>
+                <a href="#" class="active"><i class="icon-home"></i></a>
+                <a href="#"><i class="icon-book"></i></a>
+                <a href="#"><i class="icon-calendar"></i></a>
+                <a href="#"><i class="icon-star"></i></a>
+                <a href="#"><i class="icon-settings"></i></a>
+            </nav>
+            <a href="#" class="sidebar-bottom"><i class="icon-cog"></i></a>
+        </aside> -->
+        <main class="content">
+            <div class="profile-section">
+                <img src="photos/profile.png" alt="Profile" class="profile-image">
+                <h2 id="user-greet-name"></h2>
+                <p>India 🇮🇳</p>
+                <!--- <div class="stats">
+                    <div>
+                        <h3>2</h3>
+                        <p>Courses</p>
+                    </div>
+                    <div>
+                        <h3>1</h3>
+                        <p>Completions</p>
+                    </div>
+                </div> -->
+                <div class="upcoming-courses">
+                    <div class="section-header">
+                        <h2>Internships</h2>
+                        <a href="internship.html">View All</a>
+                    </div>
+                    <div class="upcoming-course-item">
+                        <div class="course-icon">💜</div>
+                        <div class="course-info">
+                            <a href="https://codectechnologies.in/courses/web-development-training-course/" target="_blank">
+                                <h4>Web Development Intern</h4>
+                            </a>
+                            <p>Last date: 20 Jun 2025</p>
+                        </div>
+                        <i class="icon-chevron-right"></i>
+                    </div>
+                    <div class="upcoming-course-item">
+                        <div class="course-icon">💙</div>
+                        <div class="course-info">
+                            <h4>Cloud Engineer</h4>
+                            <p>Last date: 21 Jun 2025</p>
+                        </div>
+                        <i class="icon-chevron-right"></i>
+                    </div>
+                    <div class="upcoming-course-item">
+                        <div class="course-icon">🧡</div>
+                        <div class="course-info">
+                            <h4>Full Stack Development Intern</h4>
+                            <p>Last date: 31 Jun 2025</p>
+                        </div>
+                        <i class="icon-chevron-right"></i>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="main-content">
+                <header>
+                    <div>
+                        <h1 id="user-greet-name1"></h1>
+                        <p>Let's learn something new today!</p>
+                    </div>
+                    <div class="search-and-notifications">
+                        <div class="search-bar">
+                            <i class="icon-search"></i>
+                            <input type="text" placeholder="Search anything here...">
+                        </div>
+                        <button class="notifications-btn"><i class="icon-bell"></i></button>
+                        <a href="logout.html">
+                            <button class="logout-btn">
+                              <i class="icon-logout"></i> Logout
+                            </button>
+                          </a>
+                    </div>
+                </header>
+                <div class="featured-course">
+                    <div class="featured-course-content">
+                        <h2>The Right Choice Of Programming Course</h2>
+                        <p>Choose from 20+ GOD online courses with a new issue<br>and many more!</p>
+                        <a href="course.html">
+                            <button>View Courses</button>
+                        </a>
+                    </div>
+                    <div class="featured-course-pattern"></div>
+                </div>
+                <div class="your-courses">
+                    <div class="section-header">
+                        <h2>Our Courses</h2>
+                        <a href="course.html">View All</a>
+                    </div>
+                    <div class="course-grid">
+                        <div class="course-card">
+                            <img src="photos/9.png" alt="UI Vector Illustration">
+                            <div class="course-info">
+                                <h3>C Programming</h3>
+                                <p>CodeProgramix</p>
+                                <p>4 Weeks</p>
+                                <a >
+                                    <button>Access Course</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="course-card">
+                            <img src="photos/htmlcss.jpg" alt="Color Theory">
+                            <div class="course-info">
+                                <h3>Web Development</h3>
+                                <p>CodeProgramix</p>
+                                <!-- <div class="course-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 55%"></div>
+                                    </div>
+                                    <span>55%</span>
+                                </div> -->
+                                <p>9 Weeks</p>
+                                <button>Access Course</button>
+                            </div>
+                        </div>
+                        <div class="course-card">
+                            <img src="photos/dsajava.jpeg" alt="Typography">
+                            <div class="course-info">
+                                <h3>DSA with Java</h3>
+                                <p>CodeProgramix</p>
+                                <p>12 Weeks</p>
+                                <button>Access Course</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="student-dashboard.js"></script>
+</body>
+</html>
+<script>
+    // Function to check if the user is enrolled in the course
+function checkEnrollment(courseName) {
+    // For demo purposes, let's assume enrollment status is stored in localStorage
+    const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+
+    if (courseName === 'C Programming') {
+        if (!enrolledCourses.includes(courseName)) {
+            // If not enrolled, alert and redirect to the course page
+        // alert('You need to enroll in the course first.');
+            window.location.href = 'cprogramming/basic-c.html'; // Redirect to course page
+        } 
+    } else if (courseName === 'Web Development' || courseName === 'DSA with Java') {
+        // For Web Development or DSA with Java, show a coming soon message
+        alert('Coming soon! The course is not available yet.');
+    }
+}
+
+
+// Attach event listeners to all "Access Course" buttons
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all course buttons
+    const courseButtons = document.querySelectorAll('.course-card button');
+
+    courseButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            const courseName = event.target.closest('.course-card').querySelector('h3').textContent;
+
+            // Call the checkEnrollment function with the appropriate course name
+            checkEnrollment(courseName);
+
+        });
+    });
+});
+</script>

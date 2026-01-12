@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structure and Enum</title>
+    <link rel="stylesheet" href="all-cse.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CodeProgramix</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../course.html">Course</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-details">
+            <h1>Structure, Union and Enum in C</h1>
+            <h2>Structure (struct) in C</h2>
+            <p>A structure is a user-defined data type that allows the grouping of variables of different types under a single name. Each variable in the structure is called a "member."</p>
+            <h3>Syntax:</h3>
+            <pre>
+struct structure_name {
+    data_type member1;
+    data_type member2;
+    // Add more members
+};
+            </pre>
+            <h3>Example:</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+struct Student {
+    char name[50];
+    int age;
+    float marks;
+};
+
+int main() {
+    struct Student student1 = {"John", 20, 85.5};
+
+    printf("Name: %s\n", student1.name);
+    printf("Age: %d\n", student1.age);
+    printf("Marks: %.2f\n", student1.marks);
+
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Advantages:</h3>
+            <ul>
+                <li>Grouping different types of data: Structures are useful for grouping different data types together, such as representing real-world objects (e.g., students, books, etc.).</li>
+                <li>Organized and readable: Structures make the code more readable and organized, as all related data can be accessed through one variable.</li>
+            </ul>
+            <h3>Disadvantages:</h3>
+            <ul>
+                <li>Memory usage: A structure allocates memory for all its members, meaning it can use more memory than needed when some members aren't used.</li>
+            </ul>
+
+            <h2>Union (union) in C</h2>
+            <p>A union is similar to a structure, but with one key difference: all members of a union share the same memory location. This means that a union can only store one of its members at a time, and the memory size of a union is determined by the size of its largest member.</p>
+            <h3>Syntax:</h3>
+            <pre>
+union union_name {
+    data_type member1;
+    data_type member2;
+    // Add more members
+};
+            </pre>
+            <h3>Example:</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+union Data {
+    int i;
+    float f;
+    char str[20];
+};
+
+int main() {
+    union Data data1;
+    
+    data1.i = 10;
+    printf("Integer: %d\n", data1.i);
+    
+    data1.f = 3.14;
+    printf("Float: %.2f\n", data1.f);
+    
+    // After assigning `f`, `i` value gets overwritten
+    data1.i = 100;
+    printf("Integer after overwrite: %d\n", data1.i);
+
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Advantages:</h3>
+            <ul>
+                <li>Memory efficiency: Unions are memory-efficient, as they use the memory only for one of the members at a time. This can save memory, especially when the union has large data types.</li>
+            </ul>
+            <h3>Disadvantages:</h3>
+            <ul>
+                <li>Only one member at a time: Only one of the union members can store data at any given time. This makes unions less flexible than structures when you need to store multiple values simultaneously.</li>
+            </ul>
+
+            <h2>Enum (enum) in C</h2>
+            <p>An enum is a data type that allows you to assign names to integral constants. It is typically used to represent a set of related values.</p>
+            <h3>Syntax:</h3>
+            <pre>
+enum enum_name {
+    constant1 = value1,
+    constant2 = value2,
+    // Add more constants
+};
+            </pre>
+            <h3>Example:</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+enum Weekday {
+    Sunday = 1, 
+    Monday, 
+    Tuesday, 
+    Wednesday, 
+    Thursday, 
+    Friday, 
+    Saturday
+};
+
+int main() {
+    enum Weekday today = Wednesday;
+
+    printf("Today is day number %d of the week.\n", today);  // Output: Today is day number 4 of the week.
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>Advantages:</h3>
+            <ul>
+                <li>Readability: Using enum helps make code more readable by providing meaningful names to constant values, which improves the maintainability of the code.</li>
+                <li>Better control over values: You can explicitly assign values to the constants, or let the compiler automatically assign them in sequence.</li>
+            </ul>
+            <h3>Disadvantages:</h3>
+            <ul>
+                <li>Limited to integers: enum values are treated as integers, so you cannot use non-integer values.</li>
+            </ul>
+
+            <h2>Comparison of Structure, Union, and Enum</h2>
+            <table border="1">
+                <tr>
+                    <th>Feature</th>
+                    <th>Structure</th>
+                    <th>Union</th>
+                    <th>Enum</th>
+                </tr>
+                <tr>
+                    <td>Memory Allocation</td>
+                    <td>Allocates memory for all members.</td>
+                    <td>Allocates memory for the largest member only.</td>
+                    <td>No memory allocated, it's a symbolic name for a constant.</td>
+                </tr>
+                <tr>
+                    <td>Use Case</td>
+                    <td>Useful for grouping different data types together.</td>
+                    <td>Useful when you need to store one of several data types, but not all at once.</td>
+                    <td>Used to represent a set of related integer constants.</td>
+                </tr>
+                <tr>
+                    <td>Access to Members</td>
+                    <td>All members can be accessed independently.</td>
+                    <td>Only one member can be accessed at a time.</td>
+                    <td>Represents integer values using names (constants).</td>
+                </tr>
+                <tr>
+                    <td>Memory Efficiency</td>
+                    <td>Less memory-efficient, as all members are stored.</td>
+                    <td>More memory-efficient as only one member is stored.</td>
+                    <td>No memory usage, only symbolic constants.</td>
+                </tr>
+                <tr>
+                    <td>Flexibility</td>
+                    <td>Very flexible. Can store multiple different types of data.</td>
+                    <td>Less flexible as only one member can be used at any time.</td>
+                    <td>Fixed values and cannot store data or objects.</td>
+                </tr>
+                <tr>
+                    <td>Size</td>
+                    <td>Size is the sum of the sizes of its members.</td>
+                    <td>Size is the size of its largest member.</td>
+                    <td>No size, as it only represents integer constants.</td>
+                </tr>
+            </table>
+            <h2>Programming Questions</h2>
+            <h3>1.Write a program to define a structure to store details of a student (name, roll number, and marks in three subjects). Use this structure to input and display the details of three students.</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+struct Student {
+    char name[50];
+    int roll_no;
+    float marks[3];
+};
+
+int main() {
+    struct Student students[3];
+    for(int i = 0; i < 3; i++) {
+        printf("Enter details for student %d:\n", i + 1);
+        printf("Name: ");
+        scanf("%s", students[i].name);
+        printf("Roll Number: ");
+        scanf("%d", &students[i].roll_no);
+        printf("Enter marks for three subjects: ");
+        for(int j = 0; j < 3; j++) {
+            scanf("%f", &students[i].marks[j]);
+        }
+    }
+
+    printf("\nStudent Details:\n");
+    for(int i = 0; i < 3; i++) {
+        printf("Student %d\n", i + 1);
+        printf("Name: %s\n", students[i].name);
+        printf("Roll Number: %d\n", students[i].roll_no);
+        printf("Marks: %.2f, %.2f, %.2f\n", students[i].marks[0], students[i].marks[1], students[i].marks[2]);
+    }
+
+    return 0;
+}
+
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>2.Write a program to define a structure to represent a date (day, month, year). Write functions to input, display, and calculate the difference between two dates.</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+struct Date {
+    int day;
+    int month;
+    int year;
+};
+
+void inputDate(struct Date* date) {
+    printf("Enter day: ");
+    scanf("%d", &date->day);
+    printf("Enter month: ");
+    scanf("%d", &date->month);
+    printf("Enter year: ");
+    scanf("%d", &date->year);
+}
+
+void displayDate(struct Date date) {
+    printf("%d/%d/%d\n", date.day, date.month, date.year);
+}
+
+int isLeapYear(int year) {
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+        return 1;
+    }
+    return 0;
+}
+
+int daysInMonth(int month, int year) {
+    switch (month) {
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12: return 31;
+        case 4: case 6: case 9: case 11: return 30;
+        case 2: return isLeapYear(year) ? 29 : 28;
+        default: return 0;
+    }
+}
+
+int dateToDays(struct Date date) {
+    int totalDays = 0;
+    for (int i = 1; i < date.year; i++) {
+        totalDays += isLeapYear(i) ? 366 : 365;
+    }
+    for (int i = 1; i < date.month; i++) {
+        totalDays += daysInMonth(i, date.year);
+    }
+    totalDays += date.day;
+    return totalDays;
+}
+
+void calculateDateDifference(struct Date date1, struct Date date2) {
+    int days1 = dateToDays(date1);
+    int days2 = dateToDays(date2);
+    int diff = days2 - days1;
+    if (diff < 0) {
+        diff = -diff;
+    }
+    printf("The difference between the two dates is %d days.\n", diff);
+}
+
+int main() {
+    struct Date date1, date2;
+    printf("Enter first date:\n");
+    inputDate(&date1);
+    printf("Enter second date:\n");
+    inputDate(&date2);
+
+    printf("First date: ");
+    displayDate(date1);
+
+    printf("Second date: ");
+    displayDate(date2);
+
+    calculateDateDifference(date1, date2);
+
+    return 0;
+}
+
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>3.Define a structure to represent a book with attributes like title, author, and price. Write a program to accept these details from the user and display them in a formatted way.</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+struct Book {
+    char title[100];
+    char author[100];
+    float price;
+};
+
+void inputBookDetails(struct Book* book) {
+    printf("Enter book title: ");
+    getchar();  // To consume any leftover newline character from previous input
+    fgets(book->title, sizeof(book->title), stdin);
+    
+    printf("Enter author name: ");
+    fgets(book->author, sizeof(book->author), stdin);
+    
+    printf("Enter book price: ");
+    scanf("%f", &book->price);
+}
+
+void displayBookDetails(struct Book book) {
+    printf("\nBook Details:\n");
+    printf("Title: %s", book.title);
+    printf("Author: %s", book.author);
+    printf("Price: %.2f\n", book.price);
+}
+
+int main() {
+    struct Book book;
+    
+    inputBookDetails(&book);
+    displayBookDetails(book);
+    
+    return 0;
+}
+
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>4.Write a program using a union to store a student's marks either as an integer (total marks) or as a float (CGPA). Include a function to display the marks in the appropriate format.</h3>
+            <pre>
+#include &lt;stdio.h&gt;
+union Marks {
+    int totalMarks;
+    float CGPA;
+};
+
+struct Student {
+    char name[50];
+    int rollNo;
+    union Marks marks;
+    int isCGPA;  // Flag to indicate whether the marks are in CGPA format
+};
+
+void inputStudentDetails(struct Student* student) {
+    printf("Enter student name: ");
+    getchar();  // To consume any leftover newline character from previous input
+    fgets(student->name, sizeof(student->name), stdin);
+    
+    printf("Enter roll number: ");
+    scanf("%d", &student->rollNo);
+
+    printf("Enter marks as:\n1. Total Marks (Integer)\n2. CGPA (Float)\nSelect an option: ");
+    int option;
+    scanf("%d", &option);
+
+    if (option == 1) {
+        printf("Enter total marks: ");
+        scanf("%d", &student->marks.totalMarks);
+        student->isCGPA = 0;
+    } else if (option == 2) {
+        printf("Enter CGPA: ");
+        scanf("%f", &student->marks.CGPA);
+        student->isCGPA = 1;
+    } else {
+        printf("Invalid option. Defaulting to Total Marks.\n");
+        printf("Enter total marks: ");
+        scanf("%d", &student->marks.totalMarks);
+        student->isCGPA = 0;
+    }
+}
+
+void displayStudentDetails(struct Student student) {
+    printf("\nStudent Details:\n");
+    printf("Name: %s", student.name);
+    printf("Roll Number: %d\n", student.rollNo);
+    
+    if (student.isCGPA) {
+        printf("Marks (CGPA): %.2f\n", student.marks.CGPA);
+    } else {
+        printf("Marks (Total): %d\n", student.marks.totalMarks);
+    }
+}
+
+int main() {
+    struct Student student;
+    
+    inputStudentDetails(&student);
+    displayStudentDetails(student);
+    
+    return 0;
+}
+
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h3>5.Define an enum for months of the year. Write a program that accepts a month number from the user and displays the number of days in that month, accounting for leap years.</h3>
+<pre>
+#include &lt;stdio.h&gt;
+
+enum Month {
+    JANUARY = 1, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
+};
+
+int isLeapYear(int year) {
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+        return 1;
+    }
+    return 0;
+}
+
+int daysInMonth(int month, int year) {
+    switch (month) {
+        case JANUARY: case MARCH: case MAY: case JULY: case AUGUST: case OCTOBER: case DECEMBER:
+            return 31;
+        case APRIL: case JUNE: case SEPTEMBER: case NOVEMBER:
+            return 30;
+        case FEBRUARY:
+            return isLeapYear(year) ? 29 : 28;
+        default:
+            return 0;
+    }
+}
+
+int main() {
+    int month, year;
+    
+    printf("Enter month number (1-12): ");
+    scanf("%d", &month);
+    
+    if (month < 1 || month > 12) {
+        printf("Invalid month number.\n");
+        return 1;
+    }
+    
+    printf("Enter year: ");
+    scanf("%d", &year);
+    
+    int days = daysInMonth(month, year);
+    printf("Number of days in month %d of year %d: %d\n", month, year, days);
+    
+    return 0;
+}
+</pre>
+<p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <a href="file.html" class="back-button">Previous page</a>
+            <a href="important.html" class="back-button">Next page</a>
+ 
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: codeprogramix@gmail.com</p>
+                <p>Phone: +91 9973186195</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="icons8-facebook.svg" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="icons8-instagram.svg" alt="Twitter Icon"></a>
+                    <a href="#" aria-label="LinkedIn"><img src="icons8-linkedin.svg" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 CodeProgramix. All rights reserved.</p>
+    </footer>
+</body>
+</html>

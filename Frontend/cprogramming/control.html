@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Structures in C - CodeProgramix</title>
+    <link rel="stylesheet" href="all-cse.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CodeProgramix</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../course.html">Course</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-details">
+            <h1>Control Structures in C</h1>
+            <p>
+                Control structures in C are used to control the flow of execution of a program. They enable the program to make decisions, repeat certain operations, and branch to different parts based on conditions. There are three primary types of control structures in C:
+            </p>
+            <ul>
+                <li>1. Decision-Making Statements (Conditional statements)</li>
+                <li>2. Looping Statements (Repetition statements)</li>
+                <li>3. Jump Statements</li>
+            </ul>
+            <p>Let's explore each category with examples, followed by questions and dry runs.</p>
+
+            <h2>1. Decision-Making Statements</h2>
+            <p>Decision-making statements are used to make decisions based on certain conditions.</p>
+            <h3>a. if Statement</h3>
+            <p>The if statement is used to test a condition. If the condition is true, the code inside the if block is executed.</p>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 10;
+    if (a > 5) {
+        printf("a is greater than 5\n");
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h4>Dry Run:</h4>
+            <ul>
+                <li>a = 10, the condition a > 5 is true, so "a is greater than 5" is printed.</li>
+            </ul>
+            <h4>Output:</h4>
+            <pre>a is greater than 5</pre>
+
+            <h3>b. if-else Statement</h3>
+            <p>The if-else statement provides two paths: one if the condition is true and the other if the condition is false.</p>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 4;
+    if (a > 5) {
+        printf("a is greater than 5\n");
+    } else {
+        printf("a is less than or equal to 5\n");
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h4>Dry Run:</h4>
+            <ul>
+                <li>a = 4, the condition a > 5 is false, so "a is less than or equal to 5" is printed.</li>
+            </ul>
+            <h4>Output:</h4>
+            <pre>a is less than or equal to 5</pre>
+
+            <h3>c. if-else-if Ladder</h3>
+            <p>The if-else-if ladder is used to test multiple conditions. The first true condition will execute, and the rest are skipped.</p>
+            <pre>
+ <code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 15;
+    if (a > 20) {
+        printf("a is greater than 20\n");
+    } else if (a == 15) {
+        printf("a is equal to 15\n");
+    } else {
+        printf("a is less than 15\n");
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h4>Dry Run:</h4>
+            <ul>
+                <li>a = 15, the first condition a > 20 is false, the second condition a == 15 is true, so "a is equal to 15" is printed.</li>
+            </ul>
+            <h4>Output:</h4>
+            <pre>a is equal to 15</pre>
+
+            <h2>2. Looping Statements</h2>
+            <p>Looping statements are used when we want to execute a block of code multiple times.</p>
+            <h3>a. while Loop</h3>
+            <p>The while loop repeatedly executes a block of code as long as the condition is true.</p>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int i = 1;
+    while (i <= 5) {
+        printf("%d\n", i);
+        i++;
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h4>Dry Run:</h4>
+            <ul>
+                <li>i = 1, the condition i <= 5 is true, so it prints 1, then increments i.</li>
+                <li>This process continues until i becomes 6, at which point the condition becomes false.</li>
+            </ul>
+            <h4>Output:</h4>
+            <pre>1
+2
+3
+4
+5</pre>
+
+            <h3>b. for Loop</h3>
+            <p>The for loop is used to execute a block of code a specific number of times.</p>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    for (int i = 1; i <= 5; i++) {
+        printf("%d\n", i);
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h4>Dry Run:</h4>
+            <ul>
+                <li>The loop runs from i = 1 to i = 5, printing each value of i.</li>
+            </ul>
+            <h4>Output:</h4>
+            <pre>1
+2
+3
+4
+5</pre>
+
+            <h3>c. do-while Loop</h3>
+            <p>The do-while loop guarantees at least one execution of the loop body because the condition is checked after executing the loop body.</p>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int i = 1;
+    do {
+        printf("%d\n", i);
+        i++;
+    } while (i <= 5);
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h4>Dry Run:</h4>
+            <ul>
+                <li>The loop executes first (printing 1), then checks if i <= 5. It repeats until i becomes 6.</li>
+            </ul>
+            <h4>Output:</h4>
+            <pre>1
+2
+3
+4
+5</pre>
+
+            <h2>3. Jump Statements</h2>
+            <p>Jump statements are used to control the flow of execution in a program.</p>
+            <h3>a. break Statement</h3>
+            <p>The break statement is used to exit from a loop or a switch statement.</p>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    for (int i = 1; i <= 5; i++) {
+        if (i == 3) {
+            break;  // Exits the loop when i is 3
+        }
+        printf("%d\n", i);
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h4>Dry Run:</h4>
+            <ul>
+                <li>i starts from 1 and prints 1 and 2. When i becomes 3, the loop is exited due to the break statement.</li>
+            </ul>
+            <h4>Output:</h4>
+            <pre>1
+2</pre>
+
+            <h3>b. continue Statement</h3>
+            <p>The continue statement skips the current iteration of a loop and moves to the next iteration.</p>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    for (int i = 1; i <= 5; i++) {
+        if (i == 3) {
+            continue;  // Skips the iteration when i is 3
+        }
+        printf("%d\n", i);
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h4>Dry Run:</h4>
+            <ul>
+                <li>The loop runs and prints 1, 2, then when i == 3, it skips printing 3 and continues with 4 and 5.</li>
+            </ul>
+            <h4>Output:</h4>
+            <pre>1
+2
+4
+5</pre>
+
+            <h3>c. Switch Statement</h3>
+            <p>The switch statement allows multi-way branching based on the value of a variable.</p>
+            <pre>
+<code>#include &lt;stdio.h&gt;</code>
+int main() {
+    int a = 2;
+    switch (a) {
+        case 1:
+            printf("Case 1\n");
+            break;
+        case 2:
+            printf("Case 2\n");
+            break;
+        case 3:
+            printf("Case 3\n");
+            break;
+        default:
+            printf("Default case\n");
+    }
+    return 0;
+}
+            </pre>
+            <p><a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank">Copy and,Test this code👆 </a></p>
+            <h4>Dry Run:</h4>
+            <ul>
+                <li>a = 2, the switch checks each case. It matches case 2 and prints "Case 2".</li>
+            </ul>
+            <h4>Output:</h4>
+            <pre>Case 2</pre>
+            <h2>Practice Questions</h2>
+            <h3>1.Write a program to find the largest of three numbers using if-else-if.</h3>
+            <h3>2.Write a program to check if a number is prime or not using a for loop.</h3>
+            <h3>3.Write a program to print the Fibonacci series up to n terms using a while loop.</h3>
+            <h3>4.Write a program to reverse a given number using do-while loop.</h3>
+            <h3>5.Write a program that prints all even numbers from 1 to 100 using a for loop.</h3>
+            <h3>6.Write a program to count how many numbers in an array are divisible by 3 using a for loop.</h3>
+            <h3>7.Write a program to calculate the factorial of a number using recursion and if-else statement.</h3>
+            <h3>8.Write a program to find the second-largest number in an array using if-else logic.</h3>
+            <h3>9.Write a program that reads a number and determines if it is positive, negative, or zero using a switch statement.</h3>
+            <h3>10.Write a program to find the sum of digits of a number using a while loop.</h3>
+            <a href="operator.html" class="back-button">Previous page</a>
+            <a href="function.html" class="back-button">Next page</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: codeprogramix@gmail.com</p>
+                <p>Phone: +91 9973186195</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="icons8-facebook.svg" alt="Facebook Icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="icons8-instagram.svg" alt="Twitter Icon"></a>
+                    <a href="#" aria-label="LinkedIn"><img src="icons8-linkedin.svg" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 CodeProgramix. All rights reserved.</p>
+    </footer>
+</body>
+</html>
