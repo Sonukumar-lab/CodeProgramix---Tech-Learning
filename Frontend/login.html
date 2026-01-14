@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
 <header>
     <nav>
         <a href="index.html" class="logo">CodeProgramix</a>
@@ -21,19 +22,27 @@
     <section class="auth-form">
         <h1>Login to CodeProgramix</h1>
         <div id="login-status"></div>
+
         <form id="login-form">
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" required>
             </div>
+
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" required>
             </div>
+
             <button type="submit" class="cta-button">Log In</button>
         </form>
-        <p class="auth-switch">Don't have an account? <a href="signup.html">Sign up</a></p>
-        <p class="forgot-password"><a href="forgot-password.html">Forgot your password?</a></p>
+
+        <p class="auth-switch">
+            Don't have an account? <a href="signup.html">Sign up</a>
+        </p>
+        <p class="forgot-password">
+            <a href="forgot-password.html">Forgot your password?</a>
+        </p>
     </section>
 </main>
 
@@ -44,36 +53,51 @@
 <script>
 const BASE_URL = "https://codeprogramix-tech-learning-production.up.railway.app";
 
-document.getElementById('login-form').addEventListener('submit', async function(event){
+document.getElementById("login-form").addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const statusElement = document.getElementById("login-status");
+
+    statusElement.innerHTML = `<p style="color:blue;">Logging in...</p>`;
 
     try {
         const response = await fetch(`${BASE_URL}/api/auth/login`, {
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({ email, password })
         });
 
         const data = await response.json();
-        let statusElement = document.getElementById('login-status');
 
-        if(data.token){
-            localStorage.setItem('token', data.token);
-            statusElement.innerHTML = `<p style="color: green;">Logging in...</p>`;
-            setTimeout(()=>{ 
-                window.location.href = `student-dashboard.html?username=${data.username}`; 
-            }, 2000);
+        if (response.ok && data.token) {
+            //  Login successful
+            localStorage.setItem("token", data.token);
+
+            statusElement.innerHTML =
+                `<p style="color:green;">Login successful! Redirecting...</p>`;
+
+            setTimeout(() => {
+                window.location.href =
+                    `student-dashboard.html?username=${encodeURIComponent(data.username)}`;
+            }, 1500);
+
         } else {
-            statusElement.innerHTML = `<p style="color:red;">Invalid email or password</p>`;
+            //  Invalid credentials or error
+            statusElement.innerHTML =
+                `<p style="color:red;">${data.error || "Invalid email or password"}</p>`;
         }
-    } catch(err){
-        console.error("Error:", err);
-        document.getElementById('login-status').innerHTML = `<p style="color:red;">Something went wrong!</p>`;
+
+    } catch (error) {
+        console.error("Login error:", error);
+        statusElement.innerHTML =
+            `<p style="color:red;">Server error. Please try again later.</p>`;
     }
 });
 </script>
+
 </body>
 </html>
